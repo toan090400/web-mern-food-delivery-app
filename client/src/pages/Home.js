@@ -1,7 +1,16 @@
 import React from "react";
-
-const Home = () => {
-  return <div>Home</div>;
+import HomePage from "../components/Home/Home";
+import Header from "../components/Layout/Header/Header";
+import Footer from "../components/Layout/Footer/Footer";
+const Home = ({ title }) => {
+  document.title = `Food Delivery App - ${title}`;
+  return (
+    <>
+      <Header link="home" />
+      <HomePage />
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

@@ -3,3 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.web-food {
+  overflow: hidden;
+  position: relative;
+}
+
+// scss header
+@import "components/Layout/Header/header";
