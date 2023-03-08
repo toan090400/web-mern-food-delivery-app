@@ -1,0 +1,85 @@
+.home {
+  padding: 20px 100px;
+  &-chill {
+    display: flex;
+    gap: 20px;
+    .home-data {
+      flex: 1;
+      .data-text {
+        h5 {
+          font-size: 1rem;
+        }
+        h1 {
+          font-size: 1.5rem;
+          line-height: 25px;
+          font-weight: 600;
+          margin: 20px 0;
+          span {
+            color: #df2020;
+            &.dow {
+              display: block;
+            }
+          }
+        }
+        p {
+          font-size: 1rem;
+          line-height: 25px;
+        }
+      }
+      .data-btns {
+        margin: 20px 0;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        .order {
+          padding: 5px 15px;
+          background: #df2020;
+          color: white;
+          border: none;
+          border-radius: 5px;
+        }
+        .foods-link {
+          padding: 5px 15px;
+          border: 2px solid #df2020;
+          background: white;
+          border-radius: 5px;
+          a {
+            text-decoration: none;
+            color: #df2020;
+            &:hover {
+              color: rgba(1, 1, 209, 0.945);
+            }
+          }
+        }
+      }
+      .data-service {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        p {
+          .shipping__icon {
+            i {
+              color: white;
+              background: #df2020;
+              padding: 10px;
+              border-radius: 20px;
+            }
+          }
+        }
+      }
+    }
+    .home-image {
+      flex: 1;
+      .hero-image {
+        text-align: center;
+        img {
+          object-fit: cover;
+          width: 25rem;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+@import "respositive";
