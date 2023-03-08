@@ -1,0 +1,168 @@
+.footer {
+  background: $background-red;
+  padding: 30px 100px;
+  &-chill {
+    display: flex;
+    gap: 10px;
+    .footer-logo {
+      flex: 1;
+      .logo-image {
+        img {
+          object-fit: cover;
+          width: calc(100% - 80%);
+          height: auto;
+          margin-bottom: 5px;
+        }
+        h5 {
+          font-weight: 600;
+          font-size: 1rem;
+          margin-bottom: 15px;
+        }
+      }
+      .logo-text {
+        p {
+          font-size: 0.9rem;
+          color: $color-black;
+          line-height: 28px;
+        }
+      }
+    }
+    .footer-time {
+      flex: 1;
+      .time-text {
+        margin-bottom: 15px;
+        h5 {
+          font-size: 1.1rem;
+          color: $color-black;
+          font-weight: 600;
+        }
+      }
+      .time-open {
+        margin-bottom: 30px;
+        span {
+          font-weight: 600;
+          font-size: 1rem;
+          color: $color-black;
+        }
+        p {
+          color: $color-black;
+        }
+      }
+      .time-off {
+        span {
+          font-weight: 600;
+          font-size: 1rem;
+          color: $color-black;
+        }
+        p {
+          color: $color-black;
+        }
+      }
+    }
+    .footer-contact {
+      flex: 1;
+      .contact-text {
+        h5 {
+          font-size: 1.1rem;
+          color: $color-black;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        p {
+          color: $color-black;
+          margin-bottom: 30px;
+        }
+      }
+      .contact-phone {
+        margin-bottom: 15px;
+        span {
+          font-weight: 600;
+          font-size: 1rem;
+          color: $color-black;
+        }
+      }
+      .contact-email {
+        span {
+          font-weight: 600;
+          font-size: 1rem;
+          color: $color-black;
+        }
+      }
+    }
+    .footer-newsletter {
+      flex: 1;
+      .newletter-text {
+        margin-bottom: 30px;
+        h5 {
+          font-size: 1.1rem;
+          color: $color-black;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        p {
+          color: $color-black;
+        }
+      }
+      .newletter-submit {
+        .form-controll {
+          display: flex;
+          align-items: center;
+          .image {
+            width: 80px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(-10%, -50%);
+            background: $color-red;
+            border-radius: 5px;
+            i {
+              color: white;
+            }
+          }
+          .input {
+            position: relative;
+            width: 100%;
+            input {
+              width: 100%;
+              padding: 15px 30px;
+              border: 1px solid #373737;
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-finall {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .copyright {
+      p {
+        font-size: 0.8rem;
+        color: #df2020;
+      }
+    }
+    .follow {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      &-icon {
+        a {
+          i {
+            color: #fff;
+            background: #df2020;
+            border-radius: 50%;
+            padding: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+@import "respositive";

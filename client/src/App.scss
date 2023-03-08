@@ -8,5 +8,11 @@
   position: relative;
 }
 
+$color-red: #df2020;
+$background-red: #fde4e4;
+$color-black: #333;
+
 // scss header
 @import "components/Layout/Header/header";
+// scss footer
+@import "components/Layout/Footer/footer";

@@ -31,7 +31,7 @@
           text-decoration: none;
           color: black;
           &.open {
-            color: red;
+            color: $color-red;
           }
         }
       }
@@ -43,7 +43,7 @@
         position: relative;
         cursor: pointer;
         span {
-          background: red;
+          background: $color-red;
           color: white;
           width: 100%;
           height: auto;
@@ -65,11 +65,13 @@
   transition: all 1s ease-out;
   width: 300px;
   height: 100%;
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   top: 0;
   right: 0;
   background-color: rgb(237, 241, 241);
   .bar-are {
+    margin-top: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -79,7 +81,7 @@
       color: black;
       text-decoration: none;
       &.open {
-        color: red;
+        color: $color-red;
       }
     }
   }
