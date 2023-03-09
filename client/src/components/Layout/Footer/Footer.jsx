@@ -55,7 +55,7 @@ const Footer = () => {
               <div className="input">
                 <input type="text" placeholder="Enter your email" />
                 <div className="image">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                 </div>
               </div>
             </div>
@@ -75,22 +75,22 @@ const Footer = () => {
           </div>
           <div className="follow-icon">
             <Link to={`/`}>
-              <i class="fa-brands fa-facebook"></i>
+              <i className="fa-brands fa-facebook"></i>
             </Link>
           </div>
           <div className="follow-icon">
             <Link to={`/`}>
-              <i class="fa-brands fa-github"></i>
+              <i className="fa-brands fa-github"></i>
             </Link>
           </div>
           <div className="follow-icon">
             <Link to={`/`}>
-              <i class="fa-brands fa-youtube"></i>
+              <i className="fa-brands fa-youtube"></i>
             </Link>
           </div>
           <div className="follow-icon">
             <Link to={`/`}>
-              <i class="fa-brands fa-linkedin-in"></i>
+              <i className="fa-brands fa-linkedin-in"></i>
             </Link>
           </div>
         </div>

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { menuBar } from "../../../redux/styleSlice";
 import logo from "../../../assets/images/res-logo.png";
 const Header = ({ link }) => {
-  console.log(link);
   const styles = useSelector((state) => state.styles);
   const dispatch = useDispatch();
   const handlerClickBar = () => {
