@@ -107,6 +107,44 @@
       }
     }
   }
+  &-feature {
+    .feature-chill {
+      .feature-text {
+        text-align: center;
+        padding: 20px 0;
+        .feature-subtitle {
+          margin-bottom: 20px;
+          color: #df2020;
+          font-size: 20px;
+        }
+        .title-container {
+          margin-bottom: 15px;
+          .feature-title {
+            span {
+              color: #df2020;
+            }
+          }
+        }
+        .feature_text {
+          color: #777;
+        }
+      }
+      .feature-data {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 0;
+        .feature-item {
+          text-align: center;
+          img {
+            object-fit: cover;
+            width: 100px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
 }
 
 @import "respositive";

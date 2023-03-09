@@ -26,6 +26,10 @@
 @media (max-width: 700px) {
   .home {
     padding: 30px;
+    .home-feature .feature-chill .feature-data {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 }
 @media (min-width: 320px) and (max-width: 650px) {
