@@ -1,3 +1,16 @@
+// respositive 1000,700,650-320
+@media (max-width: 1200px) {
+  .home {
+    .home-category .category-chill {
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      .category-item {
+        flex-direction: column;
+      }
+    }
+  }
+}
 @media (max-width: 1000px) {
   .home {
     padding: 20px 50px;
@@ -19,13 +32,16 @@
   .home {
     padding: 30px 10px;
     .home-chill {
-      .home-chill .home-image .hero-image img {
+      .home-image .hero-image img {
         width: 100%;
       }
       .home-data .data-service {
         flex-direction: column;
         align-items: normal;
       }
+    }
+    .home-category .category-chill .category-item {
+      width: 100%;
     }
   }
 }

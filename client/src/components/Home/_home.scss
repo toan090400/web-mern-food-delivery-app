@@ -80,6 +80,33 @@
       }
     }
   }
+  &-category {
+    padding: 30px 0;
+    .category-chill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .category-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: #fde4e4;
+        padding: 30px 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.4s;
+        &:hover {
+          transform: translateY(-15px);
+        }
+        .category-image {
+          img {
+            object-fit: cover;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
 }
 
 @import "respositive";
