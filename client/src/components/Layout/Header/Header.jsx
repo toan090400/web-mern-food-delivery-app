@@ -2,11 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { menuBar, shoppingCard } from "../../../redux/styleSlice";
+import { deleteProduct } from "../../../redux/shoppingCartSlice";
 
 import logo from "../../../assets/images/res-logo.png";
 import product02 from "../../../assets/images/product_2.1.jpg";
 const Header = ({ link }) => {
   const styles = useSelector((state) => state.styles);
+  const shoppingCart = useSelector((state) => state.shoppingCart);
+  console.log(shoppingCart);
   const dispatch = useDispatch();
   const handlerClickBar = () => {
     dispatch(menuBar());
@@ -19,6 +22,9 @@ const Header = ({ link }) => {
   };
   const handlerClickShoppingCardBarClose = () => {
     dispatch(shoppingCard());
+  };
+  const handlerDeleteProduct = (data) => {
+    dispatch(deleteProduct(data));
   };
   return (
     <>
@@ -63,7 +69,7 @@ const Header = ({ link }) => {
                 onClick={handlerClickShoppingCard}
                 className="fa-solid fa-cart-shopping"
               ></i>
-              <span>0</span>
+              <span>{shoppingCart.quantityItem}</span>
             </div>
             <div className="info-login">
               <Link to={`/login`} className="link">
@@ -105,7 +111,7 @@ const Header = ({ link }) => {
         </div>
       </div>
       <div
-        className={styles.shoppingCard ? "shopping-cart open" : "shopping-cart"}
+        className={styles.shoppingCard ? "shopping-cart" : "shopping-cart open"}
       >
         <div className="cart-chill">
           <div
@@ -115,71 +121,41 @@ const Header = ({ link }) => {
             <i className="fa-solid fa-circle-xmark"></i>
           </div>
           <div className="card">
-            <div className="card-item">
-              <div className="data-item">
-                <div className="image-item">
-                  <img src={product02} alt="product" loading="lazy" />
+            {shoppingCart.cart.map((item) => {
+              return (
+                <div key={item.id} className="card-item">
+                  <div className="data-item">
+                    <div className="image-item">
+                      <img src={product02} alt="product" loading="lazy" />
+                    </div>
+                    <div className="product-item">
+                      <p>
+                        {item.name} <span>X 1</span>
+                      </p>
+                    </div>
+                    <div className="product-delete">
+                      <i
+                        onClick={() => handlerDeleteProduct(item.id)}
+                        className="fa-solid fa-circle-xmark"
+                      ></i>
+                    </div>
+                  </div>
+                  <div className="item-price">
+                    <p>{item.price}</p>
+                  </div>
+                  <div className="quatity-item">
+                    <i className="fa-solid fa-plus"></i>
+                    <span>1</span>
+                    <i className="fa-solid fa-minus"></i>
+                  </div>
                 </div>
-                <div className="product-item">
-                  <p>
-                    Product 01 <span>X 2</span>
-                  </p>
-                </div>
-              </div>
-              <div className="item-price">
-                <p>123123</p>
-              </div>
-              <div className="quatity-item">
-                <i class="fa-solid fa-plus"></i>
-                <span>1</span>
-                <i class="fa-solid fa-minus"></i>
-              </div>
-            </div>
-            <div className="card-item">
-              <div className="data-item">
-                <div className="image-item">
-                  <img src={product02} alt="product" loading="lazy" />
-                </div>
-                <div className="product-item">
-                  <p>
-                    Product 01 <span>X 2</span>
-                  </p>
-                </div>
-              </div>
-              <div className="item-price">
-                <p>123123</p>
-              </div>
-              <div className="quatity-item">
-                <i class="fa-solid fa-plus"></i>
-                <span>1</span>
-                <i class="fa-solid fa-minus"></i>
-              </div>
-            </div>
-            <div className="card-item">
-              <div className="data-item">
-                <div className="image-item">
-                  <img src={product02} alt="product" loading="lazy" />
-                </div>
-                <div className="product-item">
-                  <p>
-                    Product 01 <span>X 2</span>
-                  </p>
-                </div>
-              </div>
-              <div className="item-price">
-                <p>123123</p>
-              </div>
-              <div className="quatity-item">
-                <i class="fa-solid fa-plus"></i>
-                <span>1</span>
-                <i class="fa-solid fa-minus"></i>
-              </div>
-            </div>
+              );
+            })}
           </div>
           <div className="total-price">
             <div className="price">
               <h5>
-                Total: <span>1231345</span>
+                Total: <span>{shoppingCart.total}</span>
               </h5>
             </div>
             <div className="checkout">

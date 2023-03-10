@@ -143,12 +143,17 @@
         .data-item {
           display: flex;
           align-items: center;
-          gap: 15px;
+          justify-content: space-between;
           .image-item {
             img {
               object-fit: cover;
               width: 30px;
               height: auto;
+            }
+          }
+          .product-delete {
+            i {
+              cursor: pointer;
             }
           }
         }
