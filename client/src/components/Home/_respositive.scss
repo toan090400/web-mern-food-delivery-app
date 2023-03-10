@@ -13,7 +13,7 @@
 }
 @media (max-width: 1000px) {
   .home {
-    padding: 20px 50px;
+    padding: 100px 50px;
     .home-product .product-foods {
       --template-columns: 3;
     }
@@ -61,7 +61,7 @@
 }
 @media (max-width: 700px) {
   .home {
-    padding: 30px;
+    padding: 100px 30px;
     .home-feature .feature-chill .feature-data {
       flex-wrap: wrap;
       justify-content: center;
@@ -76,7 +76,7 @@
 }
 @media (min-width: 320px) and (max-width: 650px) {
   .home {
-    padding: 30px 10px;
+    padding: 100px 10px;
     .home-chill {
       .home-image .hero-image img {
         width: 100%;

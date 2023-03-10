@@ -200,7 +200,7 @@ const Home = () => {
                 <Link to={`/`}>Product 01</Link>
               </h5>
               <div className="button">
-                <span className="product-price">100000 VND</span>
+                <span className="product-price">1000 VND</span>
                 <button className="add-to-cart">Add to Cart</button>
               </div>
             </div>
