@@ -32,8 +32,16 @@ app.use(xss());
 
 // 2 handler
 const authRouter = require("./routes/authRoute");
+const productRouter = require("./routes/productRoute");
+const categoryRouter = require("./routes/categoryRoute");
+const userRouter = require("./routes/userRoute");
+const billRouter = require("./routes/billRoute");
 
 // 3 routers
 app.use("/api/auth", authRouter);
+app.use("/api/products", productRouter);
+app.use("/api/categorys", categoryRouter);
+app.use("/api/users", userRouter);
+app.use("/api/bills", billRouter);
 // 4 server
 module.exports = app;

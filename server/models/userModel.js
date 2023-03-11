@@ -9,11 +9,15 @@ const UserSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+
     password: {
       type: String,
       trim: true,
       select: false,
     },
+
+    image: { type: Object },
+
     isAdmin: {
       type: Boolean,
       default: false,

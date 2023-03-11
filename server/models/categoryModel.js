@@ -6,7 +6,13 @@ const CategorySchema = new mongoose.Schema(
     vd: " data " => "data"
     */
     name: { type: String, trim: true },
+
     nameSlug: { type: String, trim: true },
+
+    discription: { type: String, trim: true },
+
+    image: { type: Object },
+
     imageLink: {
       type: String,
       trim: true,
