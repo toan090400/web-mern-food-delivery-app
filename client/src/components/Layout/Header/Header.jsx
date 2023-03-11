@@ -120,7 +120,7 @@ const Header = ({ link }) => {
         </div>
       </div>
       <div
-        className={styles.shoppingCard ? "shopping-cart" : "shopping-cart open"}
+        className={styles.shoppingCard ? "shopping-cart open" : "shopping-cart"}
       >
         <div className="cart-chill">
           <div
@@ -150,7 +150,8 @@ const Header = ({ link }) => {
                     </div>
                   </div>
                   <div className="item-price">
-                    <p>{item.totalProduct}</p>
+                    <p>Price: {item.price}</p>
+                    <p>Total: {item.totalProduct}</p>
                   </div>
                   <div className="quatity-item">
                     <i

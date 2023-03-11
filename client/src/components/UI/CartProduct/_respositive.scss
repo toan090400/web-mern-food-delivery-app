@@ -1,0 +1,15 @@
+@media (max-width: 1000px) {
+  .product-foods {
+    --template-columns: 3;
+  }
+}
+@media (max-width: 700px) {
+  .product-foods {
+    --template-columns: 2;
+  }
+}
+@media (min-width: 320px) and (max-width: 650px) {
+  .product-foods {
+    --template-columns: 1;
+  }
+}

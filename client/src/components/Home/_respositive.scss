@@ -14,9 +14,6 @@
 @media (max-width: 1000px) {
   .home {
     padding: 100px 50px;
-    .home-product .product-foods {
-      --template-columns: 3;
-    }
   }
 }
 @media (max-width: 900px) {
@@ -66,9 +63,6 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .home-product .product-foods {
-      --template-columns: 2;
-    }
     .home-why {
       flex-direction: column;
     }
@@ -90,9 +84,6 @@
     }
     .home-product .foods-category {
       flex-direction: column;
-    }
-    .home-product .product-foods {
-      --template-columns: 1;
     }
     .home-pizza .pizza-card {
       .slick-prev {
