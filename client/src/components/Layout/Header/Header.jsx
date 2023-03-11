@@ -2,14 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { menuBar, shoppingCard } from "../../../redux/styleSlice";
-import { deleteProduct } from "../../../redux/shoppingCartSlice";
+import {
+  increaseProduct,
+  deincreaseProduct,
+  deleteProduct,
+} from "../../../redux/shoppingCartSlice";
 
 import logo from "../../../assets/images/res-logo.png";
 import product02 from "../../../assets/images/product_2.1.jpg";
 const Header = ({ link }) => {
   const styles = useSelector((state) => state.styles);
   const shoppingCart = useSelector((state) => state.shoppingCart);
-  console.log(shoppingCart);
   const dispatch = useDispatch();
   const handlerClickBar = () => {
     dispatch(menuBar());
@@ -25,6 +28,12 @@ const Header = ({ link }) => {
   };
   const handlerDeleteProduct = (data) => {
     dispatch(deleteProduct(data));
+  };
+  const handlerIncreaseProduct = (data) => {
+    dispatch(increaseProduct(data));
+  };
+  const handlerDeincreaseProduct = (data) => {
+    dispatch(deincreaseProduct(data));
   };
   return (
     <>
@@ -130,7 +139,7 @@ const Header = ({ link }) => {
                     </div>
                     <div className="product-item">
                       <p>
-                        {item.name} <span>X 1</span>
+                        {item.name} <span>X {item.quantity}</span>
                       </p>
                     </div>
                     <div className="product-delete">
@@ -141,12 +150,18 @@ const Header = ({ link }) => {
                     </div>
                   </div>
                   <div className="item-price">
-                    <p>{item.price}</p>
+                    <p>{item.totalProduct}</p>
                   </div>
                   <div className="quatity-item">
-                    <i className="fa-solid fa-plus"></i>
-                    <span>1</span>
-                    <i className="fa-solid fa-minus"></i>
+                    <i
+                      onClick={() => handlerIncreaseProduct(item.id)}
+                      className="fa-solid fa-plus"
+                    ></i>
+                    <span>{item.quantity}</span>
+                    <i
+                      onClick={() => handlerDeincreaseProduct(item.id)}
+                      className="fa-solid fa-minus"
+                    ></i>
                   </div>
                 </div>
               );

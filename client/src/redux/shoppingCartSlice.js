@@ -13,6 +13,12 @@ const getDataQuantityItem =
     ? 0
     : JSON.parse(localStorage.getItem("quantityItem"));
 
+const setLocalStorage = (cart, total, quantityItem) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("total", JSON.stringify(total));
+  localStorage.setItem("quantityItem", JSON.stringify(quantityItem));
+};
+
 export const shoppingCartSlice = createSlice({
   name: "styles",
   initialState: {
@@ -45,36 +51,64 @@ export const shoppingCartSlice = createSlice({
           0
         );
         // lưu dữ liệu lại tại localStorage
+        setLocalStorage(state.cart, state.total, state.quantityItem);
+      }
+    },
+    increaseProduct: (state, action) => {
+      // kiểm tra xem item có tồn tại không ?
+      const findItem = state.cart.find((item) => item.id === action.payload);
+      if (findItem) {
+        findItem.quantity = findItem.quantity + 1;
+        findItem.totalProduct = findItem.price * findItem.quantity;
+
+        state.total = state.cart.reduce(
+          (total, item) => total + Number(item.price) * Number(item.quantity),
+
+          0
+        );
+        // lưu dữ liệu lại tại localStorage
+        setLocalStorage(state.cart, state.total, state.quantityItem);
+      }
+    },
+    deincreaseProduct: (state, action) => {
+      // kiểm tra xem item có tồn tại không ?
+      const findItem = state.cart.find((item) => item.id === action.payload);
+      if (findItem.quantity > 1) {
+        findItem.quantity = findItem.quantity - 1;
+        findItem.totalProduct = findItem.price * findItem.quantity;
+
+        state.total = state.cart.reduce(
+          (total, item) => total + Number(item.price) * Number(item.quantity),
+
+          0
+        );
         localStorage.setItem("cart", JSON.stringify(state.cart));
         localStorage.setItem("total", JSON.stringify(state.total));
-        localStorage.setItem(
-          "quantityItem",
-          JSON.stringify(state.quantityItem)
-        );
+      } else {
+        state.cart = state.cart.filter((item) => item.id !== action.payload);
+        state.total = state.total - findItem.totalProduct;
+        state.quantityItem = state.quantityItem - 1;
+        // lưu dữ liệu lại tại localStorage
+        setLocalStorage(state.cart, state.total, state.quantityItem);
       }
     },
     deleteProduct: (state, action) => {
       const actionId = action.payload;
       // kiểm tra xem item có tồn tại không ?
       const findItem = state.cart.find((item) => item.id === actionId);
-      console.log(findItem.totalProduct);
       if (findItem) {
         state.cart = state.cart.filter((item) => item.id !== actionId);
         state.total = state.total - findItem.totalProduct;
         state.quantityItem = state.quantityItem - 1;
         // lưu dữ liệu lại tại localStorage
-        localStorage.setItem("cart", JSON.stringify(state.cart));
-        localStorage.setItem("total", JSON.stringify(state.total));
-        localStorage.setItem(
-          "quantityItem",
-          JSON.stringify(state.quantityItem)
-        );
+        setLocalStorage(state.cart, state.total, state.quantityItem);
       }
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCart, deleteProduct } = shoppingCartSlice.actions;
+export const { addCart, increaseProduct, deincreaseProduct, deleteProduct } =
+  shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;
