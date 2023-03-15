@@ -6,6 +6,7 @@ export const styleSlice = createSlice({
     menuBar: false,
     shoppingCard: false,
     homeProductSelect: "All",
+    menuAdmin: false,
   },
   reducers: {
     menuBar: (state, action) => {
@@ -17,10 +18,14 @@ export const styleSlice = createSlice({
     homeProductSelect: (state, action) => {
       state.homeProductSelect = action.payload;
     },
+    menuAdmin: (state, action) => {
+      state.menuAdmin = !state.menuAdmin;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { menuBar, shoppingCard, homeProductSelect } = styleSlice.actions;
+export const { menuBar, shoppingCard, homeProductSelect, menuAdmin } =
+  styleSlice.actions;
 
 export default styleSlice.reducer;

@@ -1,0 +1,107 @@
+.admin-create {
+  padding: 100px 0;
+  .container_page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container_form {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      width: 80%;
+      margin: 20px 0;
+      .form-header {
+        border-bottom: 1px solid #f0f0f0;
+        background-color: #f7f7f7;
+        padding: 20px 40px;
+      }
+      .form {
+        padding: 30px 40px;
+        .form_control {
+          margin-bottom: 10px;
+          padding-bottom: 20px;
+          position: relative;
+          label {
+            display: inline-block;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+            font-weight: bolder;
+          }
+          i {
+            color: #e74c3c;
+          }
+          small {
+            color: #e74c3c;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+          }
+          .text {
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+          }
+          .textarea {
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+          }
+          .select {
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+          }
+          .group {
+            padding: 10px 10px;
+            display: inline-block;
+          }
+          // .file_upload {
+          //   //   display: inline-flex;
+          //   //   align-items: center;
+          //   //   justify-content: center;
+          //   //   font-size: 15px;
+          // }
+          .images {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 30px 0;
+            justify-content: center;
+            img {
+              width: 80px;
+              height: auto;
+              object-fit: cover;
+            }
+          }
+        }
+        .submit {
+          background-color: #8e44ad;
+          border: 2px solid #8e44ad;
+          border-radius: 4px;
+          color: #fff;
+          display: block;
+          font-family: inherit;
+          font-size: 16px;
+          padding: 10px;
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

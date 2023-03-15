@@ -18,8 +18,14 @@ $color-black: #333;
 @import "components/Layout/Footer/footer";
 // scss banner
 @import "components/Layout/Banner/banner";
+// scss admin header
+@import "components/Layout/Admin/Header/header";
+// scss admin table
+@import "components/Layout/Admin/Table/table";
 // scss ui cart product
 @import "components/UI/CartProduct/cartProduct";
+// scss ui form
+@import "components/UI/Form/form";
 // scss home
 @import "components/Home/home";
 // scss all-foods

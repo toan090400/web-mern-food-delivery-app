@@ -85,6 +85,11 @@ const Header = ({ link }) => {
                 <i className="fa-regular fa-user"></i>
               </Link>
             </div>
+            <div className="info-login">
+              <Link to={`/admin/categorys`} className="link">
+                <i className="fa-regular fa-user"></i>
+              </Link>
+            </div>
             <div className="info-bar">
               <i onClick={handlerClickBar} className="fa-solid fa-bars"></i>
             </div>

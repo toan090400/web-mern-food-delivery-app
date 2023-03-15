@@ -1,0 +1,31 @@
+@media (min-width: 320px) and (max-width: 900px) {
+  .menu {
+    &-chill {
+      position: relative;
+      .links {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        background: rgb(138, 138, 138);
+        right: 0px;
+        flex-direction: column;
+        width: 300px;
+        height: 100%;
+        display: none;
+        i {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translate(10px, 10px);
+        }
+        &.open {
+          display: flex;
+        }
+      }
+      .bar {
+        display: block;
+      }
+    }
+  }
+}
