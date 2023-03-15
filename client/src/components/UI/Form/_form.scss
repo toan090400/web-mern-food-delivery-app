@@ -68,12 +68,22 @@
             padding: 10px 10px;
             display: inline-block;
           }
-          // .file_upload {
-          //   //   display: inline-flex;
-          //   //   align-items: center;
-          //   //   justify-content: center;
-          //   //   font-size: 15px;
-          // }
+          .file_upload {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            p {
+              background: #8e44ad;
+              width: 150px;
+              text-align: center;
+              padding: 10px 20px;
+              color: #f0f0f0;
+              cursor: pointer;
+              &:hover {
+                background: #8d44addc;
+              }
+            }
+          }
           .images {
             display: flex;
             flex-direction: row;

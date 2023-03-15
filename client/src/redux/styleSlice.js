@@ -7,6 +7,7 @@ export const styleSlice = createSlice({
     shoppingCard: false,
     homeProductSelect: "All",
     menuAdmin: false,
+    imageChoose: false,
   },
   reducers: {
     menuBar: (state, action) => {
@@ -21,11 +22,19 @@ export const styleSlice = createSlice({
     menuAdmin: (state, action) => {
       state.menuAdmin = !state.menuAdmin;
     },
+    imageChoose: (state, action) => {
+      state.imageChoose = !state.imageChoose;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { menuBar, shoppingCard, homeProductSelect, menuAdmin } =
-  styleSlice.actions;
+export const {
+  menuBar,
+  shoppingCard,
+  homeProductSelect,
+  menuAdmin,
+  imageChoose,
+} = styleSlice.actions;
 
 export default styleSlice.reducer;

@@ -1,38 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import imagedata from "../../../assets/images/category-01.png";
+import { useSelector, useDispatch } from "react-redux";
+import { imageChoose } from "../../../redux/styleSlice";
 const Craete = ({ createItem }) => {
+  // form
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      // console.log(data);
-      const formData = await new FormData();
-      formData.append("name", data.name);
-      formData.append("discription", data.discription);
-      formData.append("discription", data.image[0]);
-      console.log(formData);
-      createItem(data);
-      // reset();
+      createItem({ ...data, image: imageData });
+      reset();
+      dispatch(imageChoose());
     } catch (error) {
       console.log(error);
     }
+  };
+  // image
+  const dispatch = useDispatch();
+  const styles = useSelector((state) => state.styles);
+  console.log(styles.imageChoose);
+
+  const handlerClickImage = () => {
+    dispatch(imageChoose());
+  };
+  const [imageLink, setImageLink] = useState();
+  const [imageData, setImageData] = useState();
+  useEffect(() => {
+    return () => {
+      if (imageLink) {
+        URL.revokeObjectURL(imageLink);
+      }
+    };
+  }, [imageLink]);
+  const handlerAvata = (data) => {
+    const file = data.target.files[0];
+    const image = URL.createObjectURL(file);
+
+    setImageData(file);
+    setImageLink(image);
   };
   return (
     <div className="admin-create">
       <div className="container_page">
         <div className="container_form">
           <div className="form-header">
-            <h2>Create Account</h2>
+            <h2>Create Category</h2>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} id="form" className="form">
             <div className="form_control">
               <label htmlFor="name">Name</label>
-
               {errors.name && <i className="fas fa-exclamation-circle"></i>}
               <input
                 type="text"
@@ -72,26 +92,24 @@ const Craete = ({ createItem }) => {
             </div>
             <div className="form_control">
               <label htmlFor="image">Image:</label>
-              {errors.image && <i className="fas fa-exclamation-circle"></i>}
-              {errors.image && <small>{errors.image.message}</small>}
-              <div className="file_upload">
-                <input
-                  className="file_upload__input"
-                  type="file"
-                  id="image"
-                  // multiple
-                  {...register("image", {
-                    required: {
-                      value: true,
-                      message: "Image không được trống",
-                    },
-                  })}
-                />
-              </div>
 
-              <div className="images">
-                <img src={imagedata} alt="" />
+              <div className="file_upload">
+                <p onClick={handlerClickImage}>Choose Image</p>
+                {styles.imageChoose && (
+                  <input
+                    className="file_upload__input"
+                    type="file"
+                    id="image"
+                    multiple
+                    onChange={handlerAvata}
+                  />
+                )}
               </div>
+              {styles.imageChoose && (
+                <div className="images">
+                  {imageLink && <img src={imageLink} alt="caterory-name" />}
+                </div>
+              )}
             </div>
             <button className="submit">Submit</button>
           </form>
