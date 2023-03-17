@@ -7,7 +7,7 @@ const CategorySchema = new mongoose.Schema(
     */
     name: { type: String, trim: true },
 
-    nameSlug: { type: String, trim: true },
+    slug: { type: String, trim: true },
 
     discription: { type: String, trim: true },
 

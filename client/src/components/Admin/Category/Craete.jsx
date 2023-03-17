@@ -12,9 +12,15 @@ const Craete = ({ createItem }) => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      createItem({ ...data, image: imageData });
+      const image = imageData;
+      const slug = data.name.replaceAll(" ", "-");
+      createItem({ ...data, slug, image });
       reset();
-      dispatch(imageChoose());
+      if (styles.imageChoose) {
+        dispatch(imageChoose());
+        setImageData(null);
+        setImageLink(null);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -22,8 +28,6 @@ const Craete = ({ createItem }) => {
   // image
   const dispatch = useDispatch();
   const styles = useSelector((state) => state.styles);
-  console.log(styles.imageChoose);
-
   const handlerClickImage = () => {
     dispatch(imageChoose());
   };

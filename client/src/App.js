@@ -1,6 +1,7 @@
 import "./App.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -30,7 +31,7 @@ const App = () => {
           element={<AdminCategoryCreate title={"Category-Create"} />}
         />
         <Route
-          path="/admin/category/:slug"
+          path="/admin/category/update/:slug"
           element={<AdminCategoryUpdate title={"Category-Update"} />}
         />
       </Routes>
