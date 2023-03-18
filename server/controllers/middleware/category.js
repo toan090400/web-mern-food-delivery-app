@@ -121,6 +121,24 @@ const ImageDelete = async (req, res, next) => {
     res.status(400).json(error);
   }
 };
+const ImageDeleteMany = async (req, res, next) => {
+  try {
+    const data = await req.body;
+    const category = await Category.find({ _id: data });
+    category.forEach((item) => {
+      const imageID = item.image.id;
+      if (imageID) {
+        drive.files.delete({
+          fileId: imageID,
+        });
+      }
+    });
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+};
 const CheckCreate = async (req, res, next) => {
   const nameItem = await req.body.name;
   try {
@@ -142,4 +160,5 @@ module.exports = {
   ImageCreate,
   ImageUpdate,
   ImageDelete,
+  ImageDeleteMany,
 };

@@ -48,8 +48,6 @@ const Delete = async (req, res) => {
   }
 };
 const DeleteAll = async (req, res) => {
-  console.log(req.body);
-
   try {
     await Category.deleteMany({ _id: req.body });
     res.status(200).json({ message: "Xóa thành công !" });

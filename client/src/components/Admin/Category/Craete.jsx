@@ -96,7 +96,6 @@ const Craete = ({ createItem }) => {
             </div>
             <div className="form_control">
               <label htmlFor="image">Image:</label>
-
               <div className="file_upload">
                 <p onClick={handlerClickImage}>Choose Image</p>
                 {styles.imageChoose && (
@@ -104,7 +103,7 @@ const Craete = ({ createItem }) => {
                     className="file_upload__input"
                     type="file"
                     id="image"
-                    multiple
+                    // multiple
                     onChange={handlerAvata}
                   />
                 )}

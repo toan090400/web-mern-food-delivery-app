@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { checkItem, clearCheckItem } from "../../../redux/deleteManySlice";
 const List = ({ data, deleteItem, deleteItemAll }) => {
-  const [check, setCheck] = useState([]);
+  const dispatch = useDispatch();
+  const deleteItemCheck = useSelector((state) => state.deleteMany.check);
   const handlerClick = (e) => {
-    const checkValue = e.target.value;
-    const checkItemValue = e.target.checked;
-    if (checkItemValue) {
-      setCheck([...check, { _id: checkValue }]);
-    } else {
-      const itemNew = check.filter((e) => e._id !== checkValue);
-      setCheck(itemNew);
-    }
+    const itemValue = e.target.value;
+    const itemCheck = e.target.checked;
+    dispatch(checkItem({ itemValue, itemCheck }));
   };
   // handlerDeleteAll
   const handlerDeleteAll = () => {
-    deleteItemAll(check);
+    deleteItemAll(deleteItemCheck);
     setTimeout(() => {
-      setCheck([]);
+      dispatch(clearCheckItem());
     }, 1000);
   };
   // handlerDelete
@@ -52,7 +50,7 @@ const List = ({ data, deleteItem, deleteItemAll }) => {
                   <input
                     onClick={handlerClick}
                     type="checkbox"
-                    id="categorys"
+                    id="item"
                     value={item._id}
                   />
                 </td>

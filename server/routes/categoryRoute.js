@@ -15,6 +15,7 @@ const {
   ImageCreate,
   ImageUpdate,
   ImageDelete,
+  ImageDeleteMany,
 } = require("../controllers/middleware/category");
 
 const multer = require("multer");
@@ -49,6 +50,6 @@ router.post(
 );
 router.patch("/update/:id", upload.single("image"), ImageUpdate, Update);
 router.delete("/delete/:id", ImageDelete, Delete);
-router.post("/deleteAll", DeleteAll);
+router.post("/deleteAll", ImageDeleteMany, DeleteAll);
 
 module.exports = router;
