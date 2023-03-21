@@ -7,30 +7,32 @@ const ProductSchema = new mongoose.Schema(
     */
     name: { type: String, trim: true },
 
-    nameSlug: { type: String, trim: true },
+    slug: { type: String, trim: true },
 
     discription: { type: String, trim: true },
 
     price: { type: Number, trim: true },
 
-    images: [{ type: Object }],
-
-    category: [
+    images: [
       {
-        type: mongoose.Schema.ObjectId,
-        ref: "Category",
+        id: { type: String, trim: true },
+        name: { type: String, trim: true },
+        link: {
+          type: String,
+          trim: true,
+          default: "https://lh3.googleusercontent.com/d",
+        },
       },
     ],
+
+    category: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Category",
+    },
 
     status: {
       type: String,
       trim: true,
-    },
-
-    imageLink: {
-      type: String,
-      trim: true,
-      default: "https://lh3.googleusercontent.com/d",
     },
   },
   { timestamps: true }

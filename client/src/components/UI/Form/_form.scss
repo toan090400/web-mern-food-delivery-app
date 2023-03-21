@@ -64,9 +64,29 @@
             width: 100%;
             text-align: center;
           }
-          .group {
-            padding: 10px 10px;
-            display: inline-block;
+          .radio {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            &-text {
+              display: flex;
+              align-items: center;
+            }
+            &-content {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              flex-wrap: wrap;
+              .group {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                align-items: center;
+                label {
+                  margin: 0;
+                }
+              }
+            }
           }
           .file_upload {
             display: flex;

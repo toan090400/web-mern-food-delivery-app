@@ -1,9 +1,11 @@
-const Category = require("../models/categoryModel");
+const Product = require("../models/productModel");
 const All = async (req, res) => {
   try {
-    res.status(400).json({ message: "all" });
-    // const categorys = await Category.find();
-    // res.status(400).json({ categorys });
+    const products = await Product.find().populate({
+      path: "category",
+      select: "_id name",
+    });
+    res.status(200).json({ products });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -11,10 +13,11 @@ const All = async (req, res) => {
 };
 const One = async (req, res) => {
   try {
-    res.status(400).json({ message: "one" });
-    // console.log(req.params);
-    // const category = await Category.findOne();
-    // res.status(400).json({ category });
+    const product = await Product.findOne({ slug: req.params.slug }).populate({
+      path: "category",
+      select: "_id name",
+    });
+    res.status(200).json({ product });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -22,16 +25,8 @@ const One = async (req, res) => {
 };
 const Create = async (req, res) => {
   try {
-    res.status(400).json({ message: "create" });
-    // console.log(req.body);
-    // const item = await new Category({
-    //   name: req.body.name,
-    //   user: req.body.user,
-    //   category: req.body.category,
-    //   status: req.body.status,
-    // });
-    // const create = await item.save();
-    // res.status(400).json({ message: "success", create });
+    const create = await Product.create(req.body);
+    res.status(200).json({ message: "Thêm mới thành công !", create });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -39,7 +34,11 @@ const Create = async (req, res) => {
 };
 const Update = async (req, res) => {
   try {
-    res.status(400).json({ message: "update" });
+    const update = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({ message: "Cập nhập thành công !", update });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -47,10 +46,20 @@ const Update = async (req, res) => {
 };
 const Delete = async (req, res) => {
   try {
-    res.status(400).json({ message: "delete" });
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Xóa thành công !" });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
   }
 };
-module.exports = { All, One, Create, Update, Delete };
+const DeleteAll = async (req, res) => {
+  try {
+    await Product.deleteMany({ _id: req.body });
+    res.status(200).json({ message: "Xóa thành công !" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+};
+module.exports = { All, One, Create, Update, Delete, DeleteAll };

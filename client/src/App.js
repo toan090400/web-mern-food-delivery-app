@@ -13,6 +13,10 @@ import AdminCategoryList from "./pages/Admin/Category/categorys";
 import AdminCategoryCreate from "./pages/Admin/Category/categoryCreate";
 import AdminCategoryUpdate from "./pages/Admin/Category/categoryUpdate";
 
+import AdminProductList from "./pages/Admin/Product/products";
+import AdminProductCreate from "./pages/Admin/Product/productCreate";
+import AdminProductUpdate from "./pages/Admin/Product/productUpdate";
+
 const App = () => {
   return (
     <div className="web-food">
@@ -33,6 +37,19 @@ const App = () => {
         <Route
           path="/admin/category/update/:slug"
           element={<AdminCategoryUpdate title={"Category-Update"} />}
+        />
+
+        <Route
+          path="/admin/products"
+          element={<AdminProductList title={"Product-List"} />}
+        />
+        <Route
+          path="/admin/product/create"
+          element={<AdminProductCreate title={"Product-Create"} />}
+        />
+        <Route
+          path="/admin/product/update/:slug"
+          element={<AdminProductUpdate title={"Product-Update"} />}
         />
       </Routes>
     </div>
