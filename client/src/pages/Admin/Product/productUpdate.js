@@ -11,34 +11,46 @@ const CategoryUpdate = ({ title }) => {
   const { slug } = useParams();
   document.title = `Admin-${title}-${slug}`;
   // lấy data
-  // const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(true);
   const [data, setData] = useState({});
+  const [dataCategory, setDataCategory] = useState([]);
   useEffect(() => {
-    const getCategory = async () => {
+    const getProduct = async () => {
       try {
-        const getCategory = await axios.get(
-          `http://localhost:5000/api/categorys/${slug}`
+        const getProduct = await axios.get(
+          `http://localhost:5000/api/products/${slug}`
         );
-        setData(getCategory.data.category);
+        setData(getProduct.data.product);
+        const getCategorys = await axios.get(
+          `http://localhost:5000/api/categorys`
+        );
+        setDataCategory(getCategorys.data.categorys);
       } catch (error) {
         console.log(error);
       }
     };
-    getCategory();
-  }, [slug]); // khi id thay đổi thì sẽ chạy lại
+    getProduct();
+  }, [slug, status]); // khi id thay đổi thì sẽ chạy lại
   // update data
   const handlerUpdate = async (item) => {
     const idItem = await data._id;
+    const images = await item.images;
     const formData = await new FormData();
+    formData.append("category", item.category);
     formData.append("discription", item.discription);
-    formData.append("image", item.image);
+    formData.append("status", item.status);
+    formData.append("price", item.price);
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
     try {
       const update = await axios.patch(
-        `http://localhost:5000/api/categorys/update/${idItem}`,
+        `http://localhost:5000/api/products/update/${idItem}`,
         formData
       );
       const message = await update.data.message;
       toast.success(message);
+      setStatus(!status);
     } catch (error) {
       const err = await error.response.data.message;
       toast.error(err);
@@ -49,7 +61,7 @@ const CategoryUpdate = ({ title }) => {
       <Header />
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -59,7 +71,11 @@ const CategoryUpdate = ({ title }) => {
         pauseOnHover
         theme="colored"
       />
-      <Update data={data} updateItem={handlerUpdate} />
+      <Update
+        data={data}
+        dataCategory={dataCategory}
+        updateItem={handlerUpdate}
+      />
     </>
   );
 };

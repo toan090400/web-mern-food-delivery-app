@@ -48,7 +48,7 @@ router.post(
   ImageCreate,
   Create
 );
-router.patch("/update/:id", upload.single("image"), ImageUpdate, Update);
+router.patch("/update/:id", upload.array("images"), ImageUpdate, Update);
 router.delete("/delete/:id", ImageDelete, Delete);
 router.post("/deleteAll", ImageDeleteMany, DeleteAll);
 

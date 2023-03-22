@@ -84,7 +84,7 @@ const List = ({ data, deleteItem, deleteItemAll }) => {
                 <td data="Update">
                   <div className="icon-update">
                     <Link
-                      to={`/admin/category/update/${item.slug}`}
+                      to={`/admin/product/update/${item.slug}`}
                       className="link"
                     >
                       <i className="fa-solid fa-wrench"></i>
