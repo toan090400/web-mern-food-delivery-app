@@ -17,6 +17,8 @@ import AdminProductList from "./pages/Admin/Product/products";
 import AdminProductCreate from "./pages/Admin/Product/productCreate";
 import AdminProductUpdate from "./pages/Admin/Product/productUpdate";
 
+import AdminUserList from "./pages/Admin/User/users";
+
 const App = () => {
   return (
     <div className="web-food">
@@ -50,6 +52,11 @@ const App = () => {
         <Route
           path="/admin/product/update/:slug"
           element={<AdminProductUpdate title={"Product-Update"} />}
+        />
+
+        <Route
+          path="/admin/users"
+          element={<AdminUserList title={"User-List"} />}
         />
       </Routes>
     </div>

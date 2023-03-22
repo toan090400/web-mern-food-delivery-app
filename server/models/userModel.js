@@ -18,6 +18,12 @@ const UserSchema = new mongoose.Schema(
 
     image: { type: Object },
 
+    imageLink: {
+      type: String,
+      trim: true,
+      default: "https://lh3.googleusercontent.com/d",
+    },
+
     isAdmin: {
       type: Boolean,
       default: false,
