@@ -1,10 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-
-import product02 from "../../assets/images/product_2.1.jpg";
-
-const PizzaSlide = () => {
+import { useDispatch } from "react-redux";
+import { addCart } from "../../redux/shoppingCartSlice";
+const PizzaSlide = ({ dataPizzasHot }) => {
   const settings = {
     dots: true,
     infinite: false, // có lặp lại không ?
@@ -17,6 +16,7 @@ const PizzaSlide = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
+          dots: true,
         },
       },
       {
@@ -35,120 +35,39 @@ const PizzaSlide = () => {
       },
     ],
   };
+  const dispatch = useDispatch();
+  const handlerAddToCart = (title) => {
+    dispatch(addCart(title));
+  };
   return (
     <Slider {...settings}>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
+      {dataPizzasHot.map((item) => {
+        return (
+          <div key={item._id} className="pizza-item">
+            <div className="pizza-image">
+              <img
+                src={`${item.images[0].link}/${item.images[0].id}`}
+                alt={item.name}
+                loading="lazy"
+              />
+            </div>
+            <div className="pizza-content">
+              <h5>
+                <Link to={`/food-detail/${item.slug}`}>{item.name}</Link>
+              </h5>
+              <div className="button">
+                <span className="product-price">{item.price} VND</span>
+                <button
+                  onClick={() => handlerAddToCart(item)}
+                  className="add-to-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <div className="pizza-item">
-        <div className="pizza-image">
-          <img src={product02} alt="product01" loading="lazy" />
-        </div>
-        <div className="pizza-content">
-          <h5>
-            <Link to={`/`}>Product 01</Link>
-          </h5>
-          <div className="button">
-            <span className="product-price">100000 VND</span>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </Slider>
   );
 };

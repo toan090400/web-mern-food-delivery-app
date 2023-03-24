@@ -1,6 +1,9 @@
 import React from "react";
 import CartProduct from "../UI/CartProduct/CartProduct";
-const AllFoods = () => {
+const AllFoods = ({ dataProducts, handlerSearchValue }) => {
+  const handlerSearch = (e) => {
+    handlerSearchValue(e.target.value);
+  };
   return (
     <div className="all-foods">
       <div className="foods-chill">
@@ -8,7 +11,11 @@ const AllFoods = () => {
           <div className="foods-search">
             <div className="form-controll">
               <div className="input">
-                <input type="text" placeholder="Search" />
+                <input
+                  type="text"
+                  onChange={handlerSearch}
+                  placeholder="Search"
+                />
                 <div className="image">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +46,7 @@ const AllFoods = () => {
           </div>
         </div>
         <div className="foods-data">
-          <CartProduct />
+          <CartProduct dataProducts={dataProducts} />
         </div>
       </div>
     </div>

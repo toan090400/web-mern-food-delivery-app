@@ -16,10 +16,6 @@ import service01 from "../../assets/images/service-01.png";
 import service02 from "../../assets/images/service-02.png";
 import service03 from "../../assets/images/service-03.png";
 
-import foodCategoryImg01 from "../../assets/images/hamburger.png";
-import foodCategoryImg02 from "../../assets/images/pizza.png";
-import foodCategoryImg03 from "../../assets/images/bread.png";
-
 import whyImg from "../../assets/images/location.png";
 
 import networkImg from "../../assets/images/network.png";
@@ -28,7 +24,7 @@ import PizzaSlide from "./PizzaSlide";
 
 import NetwordSlide from "./NetworkSlide";
 
-const Home = () => {
+const Home = ({ dataProducts, dataCategorys, dataPizzasHot }) => {
   const styles = useSelector((state) => state.styles);
   const dispatch = useDispatch();
   const handlerProductSelect = (title) => {
@@ -166,29 +162,26 @@ const Home = () => {
           >
             All
           </button>
-          <button
-            onClick={() => handlerProductSelect("BURGER")}
-            className={styles.homeProductSelect === "BURGER" ? "active" : ""}
-          >
-            <img src={foodCategoryImg01} alt="food-category" loading="lazy" />
-            BURGER
-          </button>
-          <button
-            onClick={() => handlerProductSelect("PIZZA")}
-            className={styles.homeProductSelect === "PIZZA" ? "active" : ""}
-          >
-            <img src={foodCategoryImg02} alt="food-category" loading="lazy" />
-            PIZZA
-          </button>
-          <button
-            onClick={() => handlerProductSelect("BREAD")}
-            className={styles.homeProductSelect === "BREAD" ? "active" : ""}
-          >
-            <img src={foodCategoryImg03} alt="food-category" loading="lazy" />
-            BREAD
-          </button>
+          {dataCategorys.map((item) => {
+            return (
+              <button
+                key={item._id}
+                onClick={() => handlerProductSelect(item.name)}
+                className={
+                  styles.homeProductSelect === item.name ? "active" : ""
+                }
+              >
+                <img
+                  src={`${item.imageLink}/${item.image.id}`}
+                  alt={item.name}
+                  loading="lazy"
+                />
+                {item.name}
+              </button>
+            );
+          })}
         </div>
-        <CartProduct />
+        <CartProduct dataProducts={dataProducts} />
       </div>
       <div className="home-why">
         <div className="why-image">
@@ -240,7 +233,7 @@ const Home = () => {
           <h2>Hot Pizza</h2>
         </div>
         <div className="pizza-card">
-          <PizzaSlide />
+          <PizzaSlide dataPizzasHot={dataPizzasHot} />
         </div>
       </div>
       <div className="home-network">

@@ -9,7 +9,6 @@ import {
 } from "../../../redux/shoppingCartSlice";
 
 import logo from "../../../assets/images/res-logo.png";
-import product02 from "../../../assets/images/product_2.1.jpg";
 const Header = ({ link }) => {
   const styles = useSelector((state) => state.styles);
   const shoppingCart = useSelector((state) => state.shoppingCart);
@@ -140,7 +139,11 @@ const Header = ({ link }) => {
                 <div key={item.id} className="card-item">
                   <div className="data-item">
                     <div className="image-item">
-                      <img src={product02} alt="product" loading="lazy" />
+                      <img
+                        src={`${item.link}/${item.image}`}
+                        alt={item.name}
+                        loading="lazy"
+                      />
                     </div>
                     <div className="product-item">
                       <p>

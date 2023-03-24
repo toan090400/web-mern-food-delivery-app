@@ -28,9 +28,11 @@ export const shoppingCartSlice = createSlice({
   },
   reducers: {
     addCart: (state, action) => {
-      const actionId = action.payload.id;
+      const actionId = action.payload._id;
       const actionName = action.payload.name;
       const actionPrice = action.payload.price;
+      const actionImage = action.payload.images[0].id;
+      const actionLink = action.payload.images[0].link;
       // kiểm tra xem item có tồn tại không ?
       const findItem = state.cart.find((item) => item.id === actionId);
       // nếu không có thì thì thêm mới item
@@ -42,6 +44,8 @@ export const shoppingCartSlice = createSlice({
           id: actionId,
           name: actionName,
           price: actionPrice,
+          image: actionImage,
+          link: actionLink,
           quantity: 1,
           totalProduct: actionPrice * 1,
         });
