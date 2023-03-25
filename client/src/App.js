@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import AllFoods from "./pages/AllFoods";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
+import FoodDetail from "./pages/FoodDetail";
 
 import AdminCategoryList from "./pages/Admin/Category/categorys";
 import AdminCategoryCreate from "./pages/Admin/Category/categoryCreate";
@@ -27,6 +28,10 @@ const App = () => {
         <Route path="/all-foods" element={<AllFoods title={"All Foods"} />} />
         <Route path="/cart" element={<Cart title={"Cart"} />} />
         <Route path="/contact" element={<Contact title={"Contact"} />} />
+        <Route
+          path="/food-detail/:slug"
+          element={<FoodDetail title={"Food-Detail"} />}
+        />
 
         <Route
           path="/admin/categorys"

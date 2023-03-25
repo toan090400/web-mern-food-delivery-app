@@ -1,0 +1,91 @@
+.food-detail {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  &-chill {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    &-images {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 10px;
+      .images-item {
+        img {
+          cursor: pointer;
+          object-fit: cover;
+          width: 100px;
+          height: auto;
+        }
+      }
+    }
+    &-image {
+      img {
+        object-fit: cover;
+        width: 400px;
+        height: auto;
+      }
+    }
+    &-information {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      .information-name {
+        p {
+          font-size: 25px;
+          font-weight: 600;
+        }
+      }
+      .information-price {
+        p {
+          font-size: 20px;
+          span {
+            font-size: 25px;
+            font-weight: 600;
+          }
+        }
+      }
+      .information-category {
+        p {
+          font-size: 20px;
+          span {
+            font-size: 25px;
+            font-weight: 600;
+          }
+        }
+      }
+      .information-button {
+        .add-to-cart {
+          cursor: pointer;
+          border: none;
+          padding: 7px 25px;
+          background: #df2020;
+          color: #fff;
+          border-radius: 5px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  &-context {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .context-text {
+      display: flex;
+      gap: 20px;
+      h3 {
+        cursor: pointer;
+        &.show {
+          color: #df2020;
+        }
+      }
+    }
+    // .context-discription {
+    // }
+  }
+}
+@import "respositive";

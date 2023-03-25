@@ -1,0 +1,45 @@
+/*respositive
+1000:100,50,
+700:100,30,
+650-320:100,10
+*/
+@media (max-width: 1000px) {
+  .food-detail {
+    padding: 100px 50px;
+  }
+}
+@media (max-width: 880px) {
+  .food-detail {
+    &-chill {
+      flex-direction: column;
+      gap: 20px;
+      &-images {
+        flex-direction: row;
+      }
+      &-image {
+        img {
+          width: 300px;
+        }
+      }
+      &-information {
+        gap: 20px;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .food-detail {
+    padding: 100px 30px;
+  }
+}
+@media (min-width: 320px) and (max-width: 650px) {
+  .food-detail {
+    padding: 100px 10px;
+    &-chill {
+      &-images {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  }
+}

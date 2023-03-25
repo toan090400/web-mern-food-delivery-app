@@ -8,6 +8,7 @@ export const styleSlice = createSlice({
     homeProductSelect: "All",
     menuAdmin: false,
     imageChoose: false,
+    foodDetailImageChoose: "",
   },
   reducers: {
     menuBar: (state, action) => {
@@ -25,6 +26,13 @@ export const styleSlice = createSlice({
     imageChoose: (state, action) => {
       state.imageChoose = !state.imageChoose;
     },
+    foodDetailImageChoose: (state, action) => {
+      if (action.payload === "") {
+        state.foodDetailImageChoose = "";
+      } else {
+        state.foodDetailImageChoose = action.payload;
+      }
+    },
   },
 });
 
@@ -35,6 +43,7 @@ export const {
   homeProductSelect,
   menuAdmin,
   imageChoose,
+  foodDetailImageChoose,
 } = styleSlice.actions;
 
 export default styleSlice.reducer;
