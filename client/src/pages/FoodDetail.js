@@ -19,14 +19,14 @@ const FoodDetail = ({ title }) => {
   // reset choose images
   useEffect(() => {
     dispatch(foodDetailImageChoose(""));
-  });
+  }, [dispatch]);
   // choose images
   const imageChoose = (value) => {
     dispatch(foodDetailImageChoose(value));
   };
   // data
   const [data, setData] = useState({});
-  // const [dataLike, setDataLike] = useState([]);
+  const [dataLike, setDataLike] = useState([]);
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -34,7 +34,15 @@ const FoodDetail = ({ title }) => {
           `http://localhost:5000/api/products/${slug}`
         );
         setData(getProduct.data.product);
-        // console.log(getProduct.data.product.category.name);
+        const getAllProduct = await axios.get(
+          `http://localhost:5000/api/products`
+        );
+        const categoryProduct = await getAllProduct.data.products.filter(
+          (item) => {
+            return item.category.name === getProduct.data.product.category.name;
+          }
+        );
+        setDataLike(categoryProduct);
       } catch (error) {
         console.log(error);
       }
@@ -49,6 +57,7 @@ const FoodDetail = ({ title }) => {
         data={data}
         imageID={styles.foodDetailImageChoose}
         imageChoose={imageChoose}
+        dataProducts={dataLike}
       />
       <Footer />
     </>

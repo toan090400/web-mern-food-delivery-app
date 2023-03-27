@@ -41,5 +41,11 @@
         justify-content: center;
       }
     }
+    .food-detail-context .context-review .review {
+      flex-direction: column;
+      form {
+        flex-direction: column;
+      }
+    }
   }
 }

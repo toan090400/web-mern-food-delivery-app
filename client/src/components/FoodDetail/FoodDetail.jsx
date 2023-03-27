@@ -1,21 +1,45 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+
 import { addCart } from "../../redux/shoppingCartSlice";
-import imageItem1 from "../../assets/images/product_01.1.jpg";
-import imageItem2 from "../../assets/images/product_01.jpg";
-import imageItem3 from "../../assets/images/product_01.3.jpg";
-const FoodDetail = ({ data, imageID, imageChoose }) => {
-  //   const handlerImage = (value) => {
-  //     imageChoose(value.id);
-  //   };
+import { foodDetailDescriptionAndReview } from "../../redux/styleSlice";
+import UICart from "../UI/CartProduct/CartProduct";
+import imageItem1 from "../../assets/images/ava-1.jpg";
+const FoodDetail = ({ data, imageID, imageChoose, dataProducts }) => {
+  // choose image
+  const handlerImage = (value) => {
+    imageChoose(value.id);
+  };
   const dispatch = useDispatch();
+  const styles = useSelector((state) => state.styles);
+  // add to cart
   const handlerAddToCart = (title) => {
     dispatch(addCart(title));
+  };
+  // choose description or review
+  const handlerClickDetail = (value) => {
+    dispatch(foodDetailDescriptionAndReview(value));
+  };
+  // submit review
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="food-detail">
       <div className="food-detail-chill">
-        {/* {data.images && (
+        {data.images && (
           <div className="food-detail-chill-images">
             {data.images?.map((item) => {
               return (
@@ -47,23 +71,7 @@ const FoodDetail = ({ data, imageID, imageChoose }) => {
               />
             )}
           </div>
-        )} */}
-
-        {/* ----------------------------------------- */}
-        <div className="food-detail-chill-images">
-          <div className="images-item">
-            <img src={imageItem1} alt="" loading="lazy" />
-          </div>
-          <div className="images-item">
-            <img src={imageItem2} alt="" loading="lazy" />
-          </div>
-          <div className="images-item">
-            <img src={imageItem3} alt="" loading="lazy" />
-          </div>
-        </div>
-        <div className="food-detail-chill-image">
-          <img src={imageItem1} alt="" loading="lazy" />
-        </div>
+        )}
         <div className="food-detail-chill-information">
           <div className="information-name">
             <p>{data.name}</p>
@@ -82,6 +90,7 @@ const FoodDetail = ({ data, imageID, imageChoose }) => {
             <button
               onClick={() => handlerAddToCart(data)}
               className="add-to-cart"
+              // disabled
             >
               Add to Cart
             </button>
@@ -90,27 +99,119 @@ const FoodDetail = ({ data, imageID, imageChoose }) => {
       </div>
       <div className="food-detail-context">
         <div className="context-text">
-          <h3 className="show">Description</h3>
-          <h3>Review</h3>
+          <h3
+            className={
+              styles.foodDetailDescriptionAndReview === "Description"
+                ? "show"
+                : ""
+            }
+            onClick={() => handlerClickDetail("Description")}
+          >
+            Description
+          </h3>
+          <h3
+            className={
+              styles.foodDetailDescriptionAndReview === "Review" ? "show" : ""
+            }
+            onClick={() => handlerClickDetail("Review")}
+          >
+            Review
+          </h3>
         </div>
-        <div className="context-discription">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            similique deleniti quibusdam eaque, molestias at ab expedita ea
-            dicta harum laborum voluptate beatae labore, est sed officiis, velit
-            asperiores nisi.
-          </p>
-        </div>
-        <div className="context-review">
-          <p>
-            Review: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Assumenda similique deleniti quibusdam eaque, molestias at ab
-            expedita ea dicta harum laborum voluptate beatae labore, est sed
-            officiis, velit asperiores nisi.
-          </p>
-        </div>
+        {styles.foodDetailDescriptionAndReview === "Description" && (
+          <div className="context-discription">
+            <p>{data.discription}</p>
+          </div>
+        )}
+
+        {styles.foodDetailDescriptionAndReview === "Review" && (
+          <div className="context-review">
+            <div className="review">
+              <div className="image-user">
+                <img src={imageItem1} alt="" loading="lazy" />
+              </div>
+              <form onSubmit={handleSubmit(onSubmit)} action="">
+                <div className="form-controll">
+                  <textarea
+                    name=""
+                    id=""
+                    {...register("review", {
+                      required: {
+                        value: true,
+                        message: "Vui lòng nhập đánh giá !!!",
+                      },
+                    })}
+                  />
+                  {errors.review && <span>{errors.review.message}</span>}
+                </div>
+                <button>Submit</button>
+              </form>
+            </div>
+            <div className="review-all">
+              <h2>Review about product 01</h2>
+              <h2>No one Review</h2>
+              <div className="item">
+                <div className="user-image">
+                  <img src={imageItem1} alt="" loading="lazy" />
+                </div>
+                <div className="user-review">
+                  <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Unde laudantium quam error voluptatem, corrupti autem
+                    adipisci voluptatum similique exercitationem, dignissimos a.
+                    Numquam consequatur ducimus modi dolorum cum eum molestias
+                    officiis? Lorem, ipsum dolor sit amet consectetur
+                    adipisicing elit. Unde laudantium quam error voluptatem,
+                    corrupti autem adipisci voluptatum similique exercitationem,
+                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
+                    eum molestias officiis?
+                  </p>
+                </div>
+              </div>
+              <div className="item">
+                <div className="user-image">
+                  <img src={imageItem1} alt="" loading="lazy" />
+                </div>
+                <div className="user-review">
+                  <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Unde laudantium quam error voluptatem, corrupti autem
+                    adipisci voluptatum similique exercitationem, dignissimos a.
+                    Numquam consequatur ducimus modi dolorum cum eum molestias
+                    officiis? Lorem, ipsum dolor sit amet consectetur
+                    adipisicing elit. Unde laudantium quam error voluptatem,
+                    corrupti autem adipisci voluptatum similique exercitationem,
+                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
+                    eum molestias officiis?
+                  </p>
+                </div>
+              </div>
+              <div className="item">
+                <div className="user-image">
+                  <img src={imageItem1} alt="" loading="lazy" />
+                </div>
+                <div className="user-review">
+                  <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Unde laudantium quam error voluptatem, corrupti autem
+                    adipisci voluptatum similique exercitationem, dignissimos a.
+                    Numquam consequatur ducimus modi dolorum cum eum molestias
+                    officiis? Lorem, ipsum dolor sit amet consectetur
+                    adipisicing elit. Unde laudantium quam error voluptatem,
+                    corrupti autem adipisci voluptatum similique exercitationem,
+                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
+                    eum molestias officiis?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="food-detail-category"></div>
+      <div className="food-detail-category">
+        <h2>Would you like?</h2>
+        <UICart dataProducts={dataProducts} />
+      </div>
     </div>
   );
 };

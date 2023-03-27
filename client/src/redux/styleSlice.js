@@ -9,6 +9,8 @@ export const styleSlice = createSlice({
     menuAdmin: false,
     imageChoose: false,
     foodDetailImageChoose: "",
+    foodDetailDescriptionAndReview: "Review",
+    login: "login",
   },
   reducers: {
     menuBar: (state, action) => {
@@ -33,6 +35,12 @@ export const styleSlice = createSlice({
         state.foodDetailImageChoose = action.payload;
       }
     },
+    foodDetailDescriptionAndReview: (state, action) => {
+      state.foodDetailDescriptionAndReview = action.payload;
+    },
+    login: (state, action) => {
+      state.login = action.payload;
+    },
   },
 });
 
@@ -44,6 +52,8 @@ export const {
   menuAdmin,
   imageChoose,
   foodDetailImageChoose,
+  foodDetailDescriptionAndReview,
+  login,
 } = styleSlice.actions;
 
 export default styleSlice.reducer;
