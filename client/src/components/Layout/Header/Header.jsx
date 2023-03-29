@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { menuBar, shoppingCard } from "../../../redux/styleSlice";
+import { logoutData } from "../../../redux/authSlice";
 import {
   increaseProduct,
   deincreaseProduct,
@@ -12,6 +13,7 @@ import logo from "../../../assets/images/res-logo.png";
 const Header = ({ link }) => {
   const styles = useSelector((state) => state.styles);
   const shoppingCart = useSelector((state) => state.shoppingCart);
+  const auth = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const handlerClickBar = () => {
     dispatch(menuBar());
@@ -33,6 +35,10 @@ const Header = ({ link }) => {
   };
   const handlerDeincreaseProduct = (data) => {
     dispatch(deincreaseProduct(data));
+  };
+  // logout
+  const handlerClickLogout = () => {
+    dispatch(logoutData());
   };
   return (
     <>
@@ -79,16 +85,30 @@ const Header = ({ link }) => {
               ></i>
               <span>{shoppingCart.quantityItem}</span>
             </div>
-            <div className="info-login">
-              <Link to={`/login`} className="link">
-                <i className="fa-regular fa-user"></i>
-              </Link>
-            </div>
-            <div className="info-login">
-              <Link to={`/admin/categorys`} className="link">
-                <i className="fa-regular fa-user"></i>
-              </Link>
-            </div>
+            {auth.user ? (
+              <>
+                <div className="info-login">
+                  <Link
+                    to={auth.user.isAdmin ? `/admin/categorys` : `/`}
+                    className="link"
+                  >
+                    <i className="fa-solid fa-user-gear"></i>
+                  </Link>
+                </div>
+                <div className="info-login">
+                  <i
+                    onClick={handlerClickLogout}
+                    className="fa-solid fa-right-from-bracket"
+                  ></i>
+                </div>
+              </>
+            ) : (
+              <div className="info-login">
+                <Link to={`/login`} className="link">
+                  <i className="fa-regular fa-user"></i>
+                </Link>
+              </div>
+            )}
             <div className="info-bar">
               <i onClick={handlerClickBar} className="fa-solid fa-bars"></i>
             </div>
