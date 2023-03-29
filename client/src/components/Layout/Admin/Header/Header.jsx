@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { menuAdmin } from "../../../../redux/styleSlice";
 const Header = () => {
+  const auth = useSelector((state) => state.auth.user);
+  const userName = auth.user.username;
   const styles = useSelector((state) => state.styles);
   const dispatch = useDispatch();
   const handlerMenuOpen = () => {
@@ -12,7 +14,7 @@ const Header = () => {
     <div className="menu">
       <div className="menu-chill">
         <div className="user">
-          <h3>nhanvien001</h3>
+          <h3>{userName}</h3>
         </div>
         <div className={styles.menuAdmin ? "links open" : "links"}>
           <div className="close">

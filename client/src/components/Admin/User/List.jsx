@@ -17,14 +17,14 @@ const List = ({ data }) => {
           {data.map((item) => {
             return (
               <tr key={item._id}>
-                <td data="Name">{item.name}</td>
+                <td data="Name">{item.username}</td>
                 <td data="Image">
                   <div className="images">
                     <div className="images-item">
                       <img
                         className="image"
                         src={`${item.imageLink}/${item.image.id}`}
-                        alt={item.name}
+                        alt={item.username}
                         loading="lazy"
                       />
                     </div>

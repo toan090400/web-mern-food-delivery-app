@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Header from "../../../components/Layout/Admin/Header/Header";
-import List from "../../../components/Admin/Category/List";
+import List from "../../../components/Admin/User/List";
 const Categorys = ({ title }) => {
   document.title = `Admin-${title}`;
   // categorys

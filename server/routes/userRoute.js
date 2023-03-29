@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 
 const { All, Create } = require("./../controllers/userController");
-const { checkLogin, checkAdmin } = require("../controllers/authController");
 const { CheckCreate, ImageCreate } = require("../controllers/middleware/user");
 
 const multer = require("multer");
@@ -26,7 +25,7 @@ const fileFilter = (req, file, cb) => {
 
 let upload = multer({ storage, fileFilter });
 
-router.get("/", checkLogin, checkAdmin, All);
+router.get("/", All);
 router.post(
   "/create",
   upload.single("image"),

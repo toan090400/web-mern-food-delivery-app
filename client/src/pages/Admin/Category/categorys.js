@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../components/Layout/Admin/Header/Header";
 import List from "../../../components/Admin/Category/List";
-const Categorys = ({ title }) => {
+const Categorys = ({ title, accessToken }) => {
   document.title = `Admin-${title}`;
   // categorys
   const [status, setStatus] = useState(true);
@@ -26,13 +26,17 @@ const Categorys = ({ title }) => {
   const handleClick = async (data) => {
     try {
       const deleteItem = await axios.delete(
-        `http://localhost:5000/api/categorys/delete/${data}`
+        `http://localhost:5000/api/categorys/delete/${data}`,
+        {
+          headers: { token: `Bearer ${accessToken}` },
+        }
       );
       setStatus(!status);
       const message = await deleteItem.data.message;
       toast.success(message);
     } catch (error) {
-      console.log(error);
+      const err = await error.response.data.message;
+      toast.error(err);
     }
   };
   const handleDeleteAll = async (data) => {
@@ -40,13 +44,17 @@ const Categorys = ({ title }) => {
       try {
         const deleteItem = await axios.post(
           `http://localhost:5000/api/categorys/deleteAll`,
-          data
+          data,
+          {
+            headers: { token: `Bearer ${accessToken}` },
+          }
         );
         setStatus(!status);
         const message = await deleteItem.data.message;
         toast.success(message);
       } catch (error) {
-        console.log(error);
+        const err = await error.response.data.message;
+        toast.error(err);
       }
     } else {
       toast.warning("Vui lòng chọn thể loại muốn xóa !");
@@ -57,7 +65,7 @@ const Categorys = ({ title }) => {
       <Header />
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

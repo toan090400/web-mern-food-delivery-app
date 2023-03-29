@@ -66,7 +66,6 @@ exports.checkLogin = async (req, res, next) => {
 exports.checkAdmin = async (req, res, next) => {
   try {
     const isAdmin = await req.user.isAdmin;
-    console.log(isAdmin);
     if (isAdmin) {
       next();
     } else {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../components/Layout/Admin/Header/Header";
 import Create from "../../../components/Admin/Category/Craete";
-const CategoryCreate = ({ title }) => {
+const CategoryCreate = ({ title, accessToken }) => {
   // title
   document.title = `Admin-${title}`;
   // create
@@ -16,7 +16,10 @@ const CategoryCreate = ({ title }) => {
       formData.append("image", data.image);
       const create = await axios.post(
         "http://localhost:5000/api/categorys/create",
-        formData
+        formData,
+        {
+          headers: { token: `Bearer ${accessToken}` },
+        }
       );
       const message = await create.data.message;
       toast.success(message);

@@ -9,7 +9,7 @@ const {
   Delete,
   DeleteAll,
 } = require("./../controllers/productController");
-
+const { checkLogin, checkAdmin } = require("../controllers/authController");
 const {
   CheckCreate,
   ImageCreate,
@@ -44,12 +44,21 @@ router.get("/:slug", One);
 router.post(
   "/create",
   upload.array("images"),
+  checkLogin,
+  checkAdmin,
   CheckCreate,
   ImageCreate,
   Create
 );
-router.patch("/update/:id", upload.array("images"), ImageUpdate, Update);
-router.delete("/delete/:id", ImageDelete, Delete);
-router.post("/deleteAll", ImageDeleteMany, DeleteAll);
+router.patch(
+  "/update/:id",
+  upload.array("images"),
+  checkLogin,
+  checkAdmin,
+  ImageUpdate,
+  Update
+);
+router.delete("/delete/:id", checkLogin, checkAdmin, ImageDelete, Delete);
+router.post("/deleteAll", checkLogin, checkAdmin, ImageDeleteMany, DeleteAll);
 
 module.exports = router;

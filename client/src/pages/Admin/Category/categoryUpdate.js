@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../components/Layout/Admin/Header/Header";
 import Update from "../../../components/Admin/Category/Update";
 
-const CategoryUpdate = ({ title }) => {
+const CategoryUpdate = ({ title, accessToken }) => {
   //  lấy slug
   const { slug } = useParams();
   document.title = `Admin-${title}-${slug}`;
@@ -35,7 +35,10 @@ const CategoryUpdate = ({ title }) => {
     try {
       const update = await axios.patch(
         `http://localhost:5000/api/categorys/update/${idItem}`,
-        formData
+        formData,
+        {
+          headers: { token: `Bearer ${accessToken}` },
+        }
       );
       const message = await update.data.message;
       toast.success(message);

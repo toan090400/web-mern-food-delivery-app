@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../components/Layout/Admin/Header/Header";
 import Create from "../../../components/Admin/Product/Craete";
-const CategoryCreate = ({ title }) => {
+const CategoryCreate = ({ title, accessToken }) => {
   // title
   document.title = `Admin-${title}`;
   // data categorys
@@ -38,7 +38,10 @@ const CategoryCreate = ({ title }) => {
       }
       const create = await axios.post(
         "http://localhost:5000/api/products/create",
-        formData
+        formData,
+        {
+          headers: { token: `Bearer ${accessToken}` },
+        }
       );
       const message = await create.data.message;
       toast.success(message);
