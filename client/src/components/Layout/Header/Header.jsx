@@ -178,8 +178,10 @@ const Header = ({ link }) => {
                     </div>
                   </div>
                   <div className="item-price">
-                    <p>Price: {item.price}</p>
-                    <p>Total: {item.totalProduct}</p>
+                    <p>Price: {Intl.NumberFormat().format(item.price)} VND</p>
+                    <p>
+                      Total: {Intl.NumberFormat().format(item.totalProduct)} VND
+                    </p>
                   </div>
                   <div className="quatity-item">
                     <i
@@ -199,7 +201,10 @@ const Header = ({ link }) => {
           <div className="total-price">
             <div className="price">
               <h5>
-                Total: <span>{shoppingCart.total}</span>
+                Total:{" "}
+                <span>
+                  {Intl.NumberFormat().format(shoppingCart.total)} VND
+                </span>
               </h5>
             </div>
             <div className="checkout">

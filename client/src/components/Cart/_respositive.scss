@@ -1,0 +1,27 @@
+/*respositive
+1000:100,50,
+700:100,30,
+650-320:100,10
+*/
+@media (max-width: 1000px) {
+  .cart-page {
+    .checkout {
+      padding: 10px 50px;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .cart-page {
+    .checkout {
+      padding: 10px 30px;
+    }
+  }
+}
+@media (min-width: 320px) and (max-width: 650px) {
+  .cart-page {
+    .checkout {
+      flex-direction: column;
+      padding: 10px;
+    }
+  }
+}

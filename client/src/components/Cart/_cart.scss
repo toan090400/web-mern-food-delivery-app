@@ -1,0 +1,48 @@
+.cart-page {
+  .cart-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    .increase {
+      i {
+        background: rgb(168, 255, 146);
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
+    .quantity {
+      h3 {
+        font-size: 24px;
+      }
+    }
+    .derease {
+      i {
+        background: rgb(255, 121, 121);
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  .checkout {
+    display: flex;
+    gap: 20px;
+    padding: 10px 100px;
+    align-items: center;
+    .total {
+      p {
+        font-size: 25px;
+        font-weight: 600;
+      }
+    }
+    .checkout {
+      a {
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: 600;
+        color: rgb(250, 111, 111);
+      }
+    }
+  }
+}
+@import "respositive";
