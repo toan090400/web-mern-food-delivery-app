@@ -208,7 +208,7 @@ const Header = ({ link }) => {
               </h5>
             </div>
             <div className="checkout">
-              <Link to={`/`}>Checkout</Link>
+              <Link to={`/checkout`}>Checkout</Link>
             </div>
           </div>
         </div>

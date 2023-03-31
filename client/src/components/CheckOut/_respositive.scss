@@ -1,0 +1,26 @@
+/*respositive
+1000:100,50,
+700:100,30,
+650-320:100,10
+*/
+@media (max-width: 1000px) {
+  .checkout-page {
+    &-chill {
+      padding: 10px 50px;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .checkout-page {
+    &-chill {
+      padding: 10px 30px;
+    }
+  }
+}
+@media (min-width: 320px) and (max-width: 650px) {
+  .checkout-page {
+    &-chill {
+      padding: 10px;
+    }
+  }
+}

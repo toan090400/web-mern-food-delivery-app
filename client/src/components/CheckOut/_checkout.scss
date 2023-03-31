@@ -1,0 +1,54 @@
+.checkout-page {
+  &-chill {
+    margin-top: 130px;
+    padding: 10px 100px;
+    .checkout-form {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .form-controll {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          label {
+            font-size: 24px;
+            font-weight: 700;
+          }
+          input {
+            outline: none;
+            border: 1px solid rgb(248, 112, 63);
+            padding: 20px;
+            border-radius: 30px;
+          }
+          p {
+            color: rgba(252, 0, 0, 0.781);
+          }
+          textarea {
+            height: 150px;
+            outline: none;
+            border: 1px solid rgb(248, 112, 63);
+            padding: 10px 20px;
+            border-radius: 30px;
+          }
+        }
+        .checkout-total {
+          p {
+            font-size: 24px;
+            font-weight: 700;
+          }
+        }
+        button {
+          padding: 10px 20px;
+          background: orangered;
+          color: aliceblue;
+          border: none;
+          &:hover {
+            background: orange;
+          }
+        }
+      }
+    }
+  }
+}
+@import "respositive";

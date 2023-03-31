@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import FoodDetail from "./pages/FoodDetail";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 
 import AdminCategoryList from "./pages/Admin/Category/categorys";
 import AdminCategoryCreate from "./pages/Admin/Category/categoryCreate";
@@ -34,7 +35,7 @@ const App = () => {
         <Route path="/cart" element={<Cart title={"Cart"} />} />
         <Route path="/contact" element={<Contact title={"Contact"} />} />
         <Route path="/login" element={<Login title={"Login"} />} />
-        <Route path="/login" element={<Login title={"Login"} />} />
+        <Route path="/checkout" element={<Checkout title={"Checkout"} />} />
         <Route
           path="/food-detail/:slug"
           element={<FoodDetail title={"Food-Detail"} />}

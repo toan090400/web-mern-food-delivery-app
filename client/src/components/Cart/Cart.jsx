@@ -103,7 +103,7 @@ const Cart = () => {
           </p>
         </div>
         <div className="checkout">
-          <Link to={`/`}>Checkout</Link>
+          <Link to={`/checkout`}>Checkout</Link>
         </div>
       </div>
     </div>
