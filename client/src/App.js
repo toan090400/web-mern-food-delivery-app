@@ -21,6 +21,9 @@ import AdminProductCreate from "./pages/Admin/Product/productCreate";
 import AdminProductUpdate from "./pages/Admin/Product/productUpdate";
 
 import AdminUserList from "./pages/Admin/User/users";
+
+import AdminBillList from "./pages/Admin/Bill/bills";
+import AdminBillDetailList from "./pages/Admin/Bill/detail";
 import { useSelector } from "react-redux";
 
 const App = () => {
@@ -101,6 +104,15 @@ const App = () => {
             <Route
               path="/admin/users"
               element={<AdminUserList title={"User-List"} />}
+            />
+
+            <Route
+              path="/admin/bills"
+              element={<AdminBillList title={"Bill-List"} />}
+            />
+            <Route
+              path="/admin/bill/detail/:id"
+              element={<AdminBillDetailList title={"Bill-Detail-List"} />}
             />
           </>
         )}

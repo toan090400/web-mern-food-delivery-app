@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
-const ProductSchema = new mongoose.Schema(
+const BillSchema = new mongoose.Schema(
   {
-    /*
-    trim: bỏ 2 khoảng cách đầu và cuối
-    vd: " data " => "data"
-    */
     name: { type: String, trim: true },
 
-    nameSlug: { type: String, trim: true },
+    phone: { type: Number, trim: true },
 
-    totalPrice: { type: Number, trim: true },
+    address: { type: String, trim: true },
 
-    product: [
+    total: { type: Number, trim: true },
+
+    products: [
       {
-        type: Object,
+        id: {
+          type: mongoose.Schema.ObjectId,
+          ref: "Product",
+        },
+        quantity: { type: Number, trim: true },
+        totalProduct: { type: Number, trim: true },
       },
     ],
 
@@ -21,13 +24,8 @@ const ProductSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "User",
     },
-
-    status: {
-      type: String,
-      trim: true,
-    },
   },
   { timestamps: true }
 );
 
-const Product = (module.exports = mongoose.model("Product", ProductSchema));
+const Bill = (module.exports = mongoose.model("Bill", BillSchema));

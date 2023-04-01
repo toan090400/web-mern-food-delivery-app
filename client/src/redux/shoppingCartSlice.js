@@ -108,11 +108,23 @@ export const shoppingCartSlice = createSlice({
         setLocalStorage(state.cart, state.total, state.quantityItem);
       }
     },
+    payShoppingCart: (state, action) => {
+      state.cart = [];
+      state.total = 0;
+      state.quantityItem = 0;
+      // lưu dữ liệu lại tại localStorage
+      setLocalStorage(state.cart, state.total, state.quantityItem);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCart, increaseProduct, deincreaseProduct, deleteProduct } =
-  shoppingCartSlice.actions;
+export const {
+  addCart,
+  increaseProduct,
+  deincreaseProduct,
+  deleteProduct,
+  payShoppingCart,
+} = shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;

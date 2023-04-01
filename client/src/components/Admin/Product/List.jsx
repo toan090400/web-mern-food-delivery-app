@@ -57,7 +57,9 @@ const List = ({ data, deleteItem, deleteItemAll }) => {
                   />
                 </td>
                 <td data="Name">{item.name}</td>
-                <td data="Price">{item.price}</td>
+                <td data="Price">
+                  {Intl.NumberFormat().format(item.price)} VND
+                </td>
                 <td data="Category">{item.category.name}</td>
                 <td data="Image">
                   <div className="images">

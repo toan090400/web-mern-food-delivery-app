@@ -87,14 +87,17 @@ const Header = ({ link }) => {
             </div>
             {auth.user ? (
               <>
-                <div className="info-login">
-                  <Link
-                    to={auth.user.isAdmin ? `/admin/categorys` : `/`}
-                    className="link"
-                  >
-                    <i className="fa-solid fa-user-gear"></i>
-                  </Link>
-                </div>
+                {auth.user.isAdmin && (
+                  <div className="info-login">
+                    <Link
+                      to={auth.user.isAdmin ? `/admin/categorys` : `/`}
+                      className="link"
+                    >
+                      <i className="fa-solid fa-user-gear"></i>
+                    </Link>
+                  </div>
+                )}
+
                 <div className="info-login">
                   <i
                     onClick={handlerClickLogout}

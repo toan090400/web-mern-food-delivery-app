@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
-const billController = require("./../controllers/billController");
+const { All, One, Create } = require("./../controllers/billController");
+const { checkLogin } = require("../controllers/authController");
 
-router.get("/", billController.All);
-router.post("/", billController.Create);
-router.patch("/:id", billController.Update);
-router.delete("/:id", billController.Delete);
+router.get("/", All);
+router.get("/:id", One);
+router.post("/create", checkLogin, Create);
 
 module.exports = router;

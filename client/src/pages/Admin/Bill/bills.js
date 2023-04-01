@@ -2,21 +2,21 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Header from "../../../components/Layout/Admin/Header/Header";
-import List from "../../../components/Admin/User/List";
-const Users = ({ title }) => {
+import List from "../../../components/Admin/Bill/List";
+const Bills = ({ title }) => {
   document.title = `Admin-${title}`;
-  // users
+  // bills
   const [data, setData] = useState([]);
   useEffect(() => {
-    const getAllUsers = async () => {
+    const getAllBills = async () => {
       try {
-        const users = await axios.get("http://localhost:5000/api/users");
-        setData(users.data.users);
+        const bills = await axios.get("http://localhost:5000/api/bills");
+        setData(bills.data.bills);
       } catch (error) {
         console.log(error);
       }
     };
-    getAllUsers();
+    getAllBills();
   }, []);
   return (
     <>
@@ -26,4 +26,4 @@ const Users = ({ title }) => {
   );
 };
 
-export default Users;
+export default Bills;

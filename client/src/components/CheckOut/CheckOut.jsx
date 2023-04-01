@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 const CheckOut = ({ pay }) => {
   const {
     register,
@@ -29,18 +29,6 @@ const CheckOut = ({ pay }) => {
   return (
     <div className="checkout-page">
       <div className="checkout-page-chill">
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
         <div className="checkout-form">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-controll">

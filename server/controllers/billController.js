@@ -1,9 +1,16 @@
-const Category = require("../models/categoryModel");
+const Bill = require("../models/billModel");
 const All = async (req, res) => {
   try {
-    res.status(400).json({ message: "all" });
-    // const categorys = await Category.find();
-    // res.status(400).json({ categorys });
+    const bills = await Bill.find()
+      .populate({
+        path: "user",
+        select: "username image imageLink",
+      })
+      .populate({
+        path: "products.id",
+        select: "name price _id",
+      });
+    res.status(200).json({ bills });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -11,10 +18,16 @@ const All = async (req, res) => {
 };
 const One = async (req, res) => {
   try {
-    res.status(400).json({ message: "one" });
-    // console.log(req.params);
-    // const category = await Category.findOne();
-    // res.status(400).json({ category });
+    const bill = await Bill.findById(req.params.id)
+      .populate({
+        path: "user",
+        select: "username image imageLink",
+      })
+      .populate({
+        path: "products.id",
+        select: "name price images",
+      });
+    res.status(200).json({ bill });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -22,35 +35,11 @@ const One = async (req, res) => {
 };
 const Create = async (req, res) => {
   try {
-    res.status(400).json({ message: "create" });
-    // console.log(req.body);
-    // const item = await new Category({
-    //   name: req.body.name,
-    //   user: req.body.user,
-    //   category: req.body.category,
-    //   status: req.body.status,
-    // });
-    // const create = await item.save();
-    // res.status(400).json({ message: "success", create });
+    const create = await Bill.create(req.body);
+    res.status(200).json({ create, message: "Thanh toán thành công!" });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
   }
 };
-const Update = async (req, res) => {
-  try {
-    res.status(400).json({ message: "update" });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error);
-  }
-};
-const Delete = async (req, res) => {
-  try {
-    res.status(400).json({ message: "delete" });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error);
-  }
-};
-module.exports = { All, One, Create, Update, Delete };
+module.exports = { All, One, Create };

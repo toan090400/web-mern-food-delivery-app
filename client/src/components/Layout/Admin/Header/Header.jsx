@@ -28,7 +28,6 @@ const Header = () => {
           <Link to={`/admin/categorys`}>Category</Link>
           <Link to={`/admin/users`}>Account</Link>
           <Link to={`/admin/bills`}>Bill</Link>
-          <span>Logout</span>
         </div>
         <div className="bar">
           <i onClick={handlerMenuOpen} className="fa-solid fa-bars"></i>
