@@ -52,7 +52,7 @@ const CheckCreate = async (req, res, next) => {
     const user = await User.findOne({ username: usernameItem });
     if (user) {
       return res.status(400).json({
-        message: "Tên đã tồn tại !",
+        message: "Username đã tồn tại !",
         user,
       });
     }

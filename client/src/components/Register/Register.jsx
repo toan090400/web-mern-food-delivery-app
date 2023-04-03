@@ -1,19 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-const Login = ({ loginUser }) => {
+import { toast } from "react-toastify";
+const Register = ({ createUser }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      loginUser(data);
-      console.log(data);
+      const image = await imageData;
+      if (image) {
+        createUser({ ...data, image });
+        setTimeout(() => {
+          reset();
+          setImageData(null);
+          setImageLink(null);
+        }, 2000);
+      } else {
+        toast.error("Vui lòng chọn ảnh đại diện !");
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+  // image
+  const [imageLink, setImageLink] = useState();
+  const [imageData, setImageData] = useState();
+  useEffect(() => {
+    return () => {
+      if (imageLink) {
+        URL.revokeObjectURL(imageLink);
+      }
+    };
+  }, [imageLink]);
+  const handlerAvata = (data) => {
+    const file = data.target.files[0];
+    const image = URL.createObjectURL(file);
+
+    setImageData(file);
+    setImageLink(image);
   };
   return (
     <div className="login-page">
@@ -48,10 +76,24 @@ const Login = ({ loginUser }) => {
               />
               {errors.password && <p>{errors.password.message}</p>}
             </div>
+            <div className="form-controll-image">
+              <label htmlFor="image">Choose Image </label>
+              <div className="file_upload">
+                <input
+                  className="file_upload__input"
+                  type="file"
+                  id="image"
+                  onChange={handlerAvata}
+                />
+              </div>
+              <div className="images">
+                {imageLink && <img src={imageLink} alt="caterory-name" />}
+              </div>
+            </div>
             <button>Submit</button>
           </form>
           <div className="register">
-            <Link to={`/register`}>Register</Link>
+            <Link to={`/login`}>Login</Link>
           </div>
         </div>
       </div>
@@ -59,4 +101,4 @@ const Login = ({ loginUser }) => {
   );
 };
 
-export default Login;
+export default Register;

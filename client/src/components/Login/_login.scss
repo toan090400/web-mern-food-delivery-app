@@ -1,4 +1,79 @@
 .login-page {
-  padding: 100px;
+  &-chill {
+    margin-top: 130px;
+    padding: 10px 100px;
+    .login-form {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .form-controll {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          label {
+            font-size: 24px;
+            font-weight: 700;
+          }
+          input {
+            outline: none;
+            border: 1px solid rgb(248, 112, 63);
+            padding: 20px;
+            border-radius: 30px;
+          }
+          p {
+            color: rgba(252, 0, 0, 0.781);
+          }
+          textarea {
+            height: 150px;
+            outline: none;
+            border: 1px solid rgb(248, 112, 63);
+            padding: 10px 20px;
+            border-radius: 30px;
+          }
+        }
+        .form-controll-image {
+          padding: 20px 0;
+          label {
+            background: orangered;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 10px 20px;
+          }
+          input {
+            display: none;
+          }
+          .images {
+            margin-top: 30px;
+            text-align: center;
+            img {
+              object-fit: cover;
+              height: auto;
+            }
+          }
+        }
+        button {
+          padding: 10px 20px;
+          background: orangered;
+          color: aliceblue;
+          border: none;
+          &:hover {
+            background: orange;
+          }
+        }
+      }
+      .register {
+        padding: 20px 0;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: orangered;
+        }
+      }
+    }
+  }
 }
+@import "respositive";
+
 @import "respositive";
