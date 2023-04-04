@@ -7,7 +7,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import AllFoods from "./pages/AllFoods";
 import Cart from "./pages/Cart";
-import Contact from "./pages/Contact";
 import FoodDetail from "./pages/FoodDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -37,7 +36,6 @@ const App = () => {
         <Route path="/" element={<Home title={"Home"} />} />
         <Route path="/all-foods" element={<AllFoods title={"All Foods"} />} />
         <Route path="/cart" element={<Cart title={"Cart"} />} />
-        <Route path="/contact" element={<Contact title={"Contact"} />} />
         <Route path="/login" element={<Login title={"Login"} />} />
         <Route path="/register" element={<Register title={"Register"} />} />
         <Route path="/checkout" element={<Checkout title={"Checkout"} />} />

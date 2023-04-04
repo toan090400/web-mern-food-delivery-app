@@ -6,7 +6,7 @@ import { addCart } from "../../redux/shoppingCartSlice";
 import { foodDetailDescriptionAndReview } from "../../redux/styleSlice";
 import UICart from "../UI/CartProduct/CartProduct";
 import imageItem1 from "../../assets/images/ava-1.jpg";
-const FoodDetail = ({ data, imageID, imageChoose, dataProducts }) => {
+const FoodDetail = ({ data, imageID, imageChoose, dataProducts, auth }) => {
   // choose image
   const handlerImage = (value) => {
     imageChoose(value.id);
@@ -126,27 +126,31 @@ const FoodDetail = ({ data, imageID, imageChoose, dataProducts }) => {
 
         {styles.foodDetailDescriptionAndReview === "Review" && (
           <div className="context-review">
-            <div className="review">
-              <div className="image-user">
-                <img src={imageItem1} alt="" loading="lazy" />
-              </div>
-              <form onSubmit={handleSubmit(onSubmit)} action="">
-                <div className="form-controll">
-                  <textarea
-                    name=""
-                    id=""
-                    {...register("review", {
-                      required: {
-                        value: true,
-                        message: "Vui lòng nhập đánh giá !!!",
-                      },
-                    })}
-                  />
-                  {errors.review && <span>{errors.review.message}</span>}
+            {auth ? (
+              <div className="review">
+                <div className="image-user">
+                  <img src={imageItem1} alt="" loading="lazy" />
                 </div>
-                <button>Submit</button>
-              </form>
-            </div>
+                <form onSubmit={handleSubmit(onSubmit)} action="">
+                  <div className="form-controll">
+                    <textarea
+                      name=""
+                      id=""
+                      {...register("review", {
+                        required: {
+                          value: true,
+                          message: "Vui lòng nhập đánh giá !!!",
+                        },
+                      })}
+                    />
+                    {errors.review && <span>{errors.review.message}</span>}
+                  </div>
+                  <button>Submit</button>
+                </form>
+              </div>
+            ) : (
+              <h2>Vui lòng đăng nhập!</h2>
+            )}
             <div className="review-all">
               <h2>Review about product 01</h2>
               <h2>No one Review</h2>

@@ -30,9 +30,10 @@ const Home = ({ title }) => {
     };
     homeProducts();
   }, [select]);
-  //home-pizza , categorys
+  //home-pizza , categorys , user
   const [dataCategorys, setDataCategorys] = useState([]);
   const [dataPizzasHot, setPizzasHot] = useState([]);
+  const [dataUser, setUser] = useState([]);
   const homeCategorys = async () => {
     try {
       const categorys = await axios.get("http://localhost:5000/api/categorys");
@@ -54,9 +55,19 @@ const Home = ({ title }) => {
       console.log(error);
     }
   };
+  const homeUsers = async () => {
+    try {
+      const users = await axios.get("http://localhost:5000/api/users");
+      const usersArray = users.data.users;
+      setUser(usersArray);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     homeCategorys();
     homePizzasHot();
+    homeUsers();
   }, []);
   return (
     <>
@@ -65,6 +76,7 @@ const Home = ({ title }) => {
         dataProducts={dataProducts}
         dataCategorys={dataCategorys}
         dataPizzasHot={dataPizzasHot}
+        dataUser={dataUser}
       />
       <Footer />
     </>

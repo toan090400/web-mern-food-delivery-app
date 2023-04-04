@@ -13,6 +13,8 @@ const FoodDetail = ({ title }) => {
   const { slug } = useParams();
   // title
   document.title = `${title}-${slug}`;
+  // redux auth
+  const auth = useSelector((state) => state.auth.user.user);
   // redux food detail images choose
   const dispatch = useDispatch();
   const styles = useSelector((state) => state.styles);
@@ -58,6 +60,7 @@ const FoodDetail = ({ title }) => {
         imageID={styles.foodDetailImageChoose}
         imageChoose={imageChoose}
         dataProducts={dataLike}
+        auth={auth}
       />
       <Footer />
     </>

@@ -69,12 +69,6 @@ const Header = ({ link }) => {
               >
                 Cart
               </Link>
-              <Link
-                to={`/contact`}
-                className={link === "contact" ? "link open" : "link"}
-              >
-                Contact
-              </Link>
             </div>
           </div>
           <div className="header-info">

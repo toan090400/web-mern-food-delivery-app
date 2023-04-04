@@ -24,7 +24,7 @@ import PizzaSlide from "./PizzaSlide";
 
 import NetwordSlide from "./NetworkSlide";
 
-const Home = ({ dataProducts, dataCategorys, dataPizzasHot }) => {
+const Home = ({ dataProducts, dataCategorys, dataPizzasHot, dataUser }) => {
   const styles = useSelector((state) => state.styles);
   const dispatch = useDispatch();
   const handlerProductSelect = (title) => {
@@ -248,7 +248,7 @@ const Home = ({ dataProducts, dataCategorys, dataPizzasHot }) => {
             placeat fugiat!
           </p>
           <div className="network-user">
-            <NetwordSlide />
+            <NetwordSlide dataUser={dataUser} />
           </div>
         </div>
         <div className="network-image">

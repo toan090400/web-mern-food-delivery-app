@@ -33,17 +33,6 @@ const AllFoods = ({ dataProducts, handlerSearchValue }) => {
               </div>
             </div>
           </div>
-          <div className="foods-select">
-            <div className="form-controll">
-              <label className="lable-select" htmlFor="select">
-                Select:
-              </label>
-              <select className="select" id="select">
-                <option>A-Z</option>
-                <option>Z-A</option>
-              </select>
-            </div>
-          </div>
         </div>
         <div className="foods-data">
           <CartProduct dataProducts={dataProducts} />
