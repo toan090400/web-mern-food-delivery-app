@@ -9,7 +9,7 @@ export const styleSlice = createSlice({
     menuAdmin: false,
     imageChoose: false,
     foodDetailImageChoose: "",
-    foodDetailDescriptionAndReview: "Review",
+    foodDetailDescriptionAndReview: "Description",
     login: "login",
   },
   reducers: {

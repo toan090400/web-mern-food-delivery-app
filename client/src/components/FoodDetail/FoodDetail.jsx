@@ -5,8 +5,15 @@ import { useForm } from "react-hook-form";
 import { addCart } from "../../redux/shoppingCartSlice";
 import { foodDetailDescriptionAndReview } from "../../redux/styleSlice";
 import UICart from "../UI/CartProduct/CartProduct";
-import imageItem1 from "../../assets/images/ava-1.jpg";
-const FoodDetail = ({ data, imageID, imageChoose, dataProducts, auth }) => {
+const FoodDetail = ({
+  data,
+  imageID,
+  imageChoose,
+  dataProducts,
+  auth,
+  createReview,
+  dataReview,
+}) => {
   // choose image
   const handlerImage = (value) => {
     imageChoose(value.id);
@@ -28,9 +35,10 @@ const FoodDetail = ({ data, imageID, imageChoose, dataProducts, auth }) => {
     formState: { errors },
     reset,
   } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (value) => {
     try {
-      console.log(data);
+      const item = await { ...value, product: data._id };
+      createReview(item);
       reset();
     } catch (error) {
       console.log(error);
@@ -129,7 +137,11 @@ const FoodDetail = ({ data, imageID, imageChoose, dataProducts, auth }) => {
             {auth ? (
               <div className="review">
                 <div className="image-user">
-                  <img src={imageItem1} alt="" loading="lazy" />
+                  <img
+                    src={`${auth.imageLink}/${auth.image.id}`}
+                    alt={auth.username}
+                    loading="lazy"
+                  />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} action="">
                   <div className="form-controll">
@@ -152,62 +164,29 @@ const FoodDetail = ({ data, imageID, imageChoose, dataProducts, auth }) => {
               <h2>Vui lòng đăng nhập!</h2>
             )}
             <div className="review-all">
-              <h2>Review about product 01</h2>
-              <h2>No one Review</h2>
-              <div className="item">
-                <div className="user-image">
-                  <img src={imageItem1} alt="" loading="lazy" />
-                </div>
-                <div className="user-review">
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Unde laudantium quam error voluptatem, corrupti autem
-                    adipisci voluptatum similique exercitationem, dignissimos a.
-                    Numquam consequatur ducimus modi dolorum cum eum molestias
-                    officiis? Lorem, ipsum dolor sit amet consectetur
-                    adipisicing elit. Unde laudantium quam error voluptatem,
-                    corrupti autem adipisci voluptatum similique exercitationem,
-                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
-                    eum molestias officiis?
-                  </p>
-                </div>
-              </div>
-              <div className="item">
-                <div className="user-image">
-                  <img src={imageItem1} alt="" loading="lazy" />
-                </div>
-                <div className="user-review">
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Unde laudantium quam error voluptatem, corrupti autem
-                    adipisci voluptatum similique exercitationem, dignissimos a.
-                    Numquam consequatur ducimus modi dolorum cum eum molestias
-                    officiis? Lorem, ipsum dolor sit amet consectetur
-                    adipisicing elit. Unde laudantium quam error voluptatem,
-                    corrupti autem adipisci voluptatum similique exercitationem,
-                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
-                    eum molestias officiis?
-                  </p>
-                </div>
-              </div>
-              <div className="item">
-                <div className="user-image">
-                  <img src={imageItem1} alt="" loading="lazy" />
-                </div>
-                <div className="user-review">
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Unde laudantium quam error voluptatem, corrupti autem
-                    adipisci voluptatum similique exercitationem, dignissimos a.
-                    Numquam consequatur ducimus modi dolorum cum eum molestias
-                    officiis? Lorem, ipsum dolor sit amet consectetur
-                    adipisicing elit. Unde laudantium quam error voluptatem,
-                    corrupti autem adipisci voluptatum similique exercitationem,
-                    dignissimos a. Numquam consequatur ducimus modi dolorum cum
-                    eum molestias officiis?
-                  </p>
-                </div>
-              </div>
+              <h2>Review about {data.name}</h2>
+              {dataReview.length > 0 ? (
+                <>
+                  {dataReview.map((item) => {
+                    return (
+                      <div key={item._id} className="item">
+                        <div className="user-image">
+                          <img
+                            src={`${item.user.imageLink}/${item.user.image.id}`}
+                            alt={item.user.username}
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="user-review">
+                          <p>{item.review}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
+              ) : (
+                <h2>No one Review</h2>
+              )}
             </div>
           </div>
         )}
